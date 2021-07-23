@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Android-Translation</string>
+    <string name="app_name">快捷翻译</string>
     <string name="Author">作者 Esurey</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

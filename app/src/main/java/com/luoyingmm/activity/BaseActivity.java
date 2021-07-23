@@ -2,6 +2,7 @@ package com.luoyingmm.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.widget.TextView;
@@ -52,7 +53,16 @@ public abstract class BaseActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-
+    protected void saveStringToSp(String key,String val){
+        SharedPreferences sp = getSharedPreferences("login", MODE_PRIVATE);
+        SharedPreferences.Editor edit = sp.edit();
+        edit.putString(key,val);
+        edit.apply();
+    }
+    protected String getStringFromSp(String key){
+        SharedPreferences sp = getSharedPreferences("login", MODE_PRIVATE);
+        return sp.getString(key,"");
+    }
 
 
 }

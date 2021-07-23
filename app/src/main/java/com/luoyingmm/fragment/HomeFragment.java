@@ -1,5 +1,6 @@
 package com.luoyingmm.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -21,9 +22,12 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.HeaderViewListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -54,6 +58,7 @@ public class HomeFragment extends BaseFragment {
     private String sp_1,sp_2;
     private Button btn_collect;
     private RecyclerView recyclerView;
+    private FrameLayout frameLayout;
     Handler handler;
     public HomeFragment() {
         // Required empty public constructor
@@ -77,7 +82,9 @@ public class HomeFragment extends BaseFragment {
         et_enter = mRootView.findViewById(R.id.et_enter);
         et_content = mRootView.findViewById(R.id.et_content);
         btn_collect = mRootView.findViewById(R.id.btn_collect);
+        frameLayout = mRootView.findViewById(R.id.frameLayout);
         banEditTextOnlyLine(et_enter);
+        et_content.setKeyListener(null);
     }
 
     @Override
@@ -105,6 +112,16 @@ public class HomeFragment extends BaseFragment {
             }
         });
 
+        frameLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                et_enter.setFocusable(true);
+                et_enter.setFocusableInTouchMode(true);
+                et_enter.requestFocus();
+                InputMethodManager inputMethodManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputMethodManager.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+            }
+        });
 
         et_enter.addTextChangedListener(new TextWatcher() {
             @Override
