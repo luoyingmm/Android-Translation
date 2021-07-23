@@ -3,6 +3,7 @@ plugins {
 }
 
 android {
+    sourceSets.main.jniLibs.srcDirs = ['libs']
     compileSdkVersion 30
     buildToolsVersion '30.0.3'
 
@@ -14,6 +15,19 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        ndk{
+            abiFilters "armeabi", "armeabi-v7a", "x86", "mips"
+        }
+    }
+
+    signingConfigs {
+        release {
+            storeFile file('keystore.jks')
+            storePassword '157486'
+            keyAlias 'Esurey'
+            keyPassword '157486'
+        }
+
     }
 
     buildTypes {
@@ -21,6 +35,7 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -29,7 +44,10 @@ android {
 }
 
 dependencies {
-
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation files('libs\\YoudaoTranslateOnline_v2.0.2.jar')
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    compile files('libs/YoudaoBase_v2.0.4.jar')
     implementation 'androidx.appcompat:appcompat:1.3.0'
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
@@ -37,4 +55,5 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    implementation 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
 }
