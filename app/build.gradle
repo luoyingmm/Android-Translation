@@ -42,7 +42,11 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 }
-
+allprojects {
+    repositories {
+        maven { url "https://jitpack.io" }
+    }
+}
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation files('libs\\YoudaoTranslateOnline_v2.0.2.jar')
@@ -56,4 +60,6 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     implementation 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
+    compile 'com.jaredrummler:material-spinner:1.3.1'
+
 }
