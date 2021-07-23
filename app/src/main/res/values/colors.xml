@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#FFFFFF</color>
     <color name="colorPrimaryDark">#FFFFFF</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorAccent">#0B587A</color>
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
     <color name="divider">#e8e7e7</color>
@@ -11,4 +11,5 @@
     <color name="gray">#9f9f9f</color>
     <color name="gray_light">#f5f5f4</color>
     <color name="enter_gray">#F1F1F1</color>
+    <color name="blue">#27B2F1</color>
 </resources>

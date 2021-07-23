@@ -5,4 +5,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="translation_tip">请输入要翻译的单词或者句子</string>
     <string name="translation_tip_2">显示的结果</string>
+    <string name="toast_first_successful">收藏成功，可前往下方收藏界面查看~</string>
+    <string name="toast_successful">收藏成功</string>
+    <string name="toast_failed">请先输入内容!</string>
+
 </resources>

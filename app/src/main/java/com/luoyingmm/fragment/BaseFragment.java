@@ -1,5 +1,6 @@
 package com.luoyingmm.fragment;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -28,6 +29,8 @@ import com.youdao.sdk.ydtranslate.TranslateParameters;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public abstract class BaseFragment extends Fragment {
     protected View mRootView;
@@ -66,6 +69,17 @@ public abstract class BaseFragment extends Fragment {
 
             }
         });
+    }
+
+    protected void saveStringToSp(String key,String val){
+        SharedPreferences sp = getActivity().getSharedPreferences("data", MODE_PRIVATE);
+        SharedPreferences.Editor edit = sp.edit();
+        edit.putString(key,val);
+        edit.apply();
+    }
+    protected String getStringFromSp(String key){
+        SharedPreferences sp = getActivity().getSharedPreferences("data", MODE_PRIVATE);
+        return sp.getString(key,"");
     }
 
 

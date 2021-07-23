@@ -35,7 +35,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         initView();
         initData();
         StatusBarUtil.setStatusBarMode(this, true, R.color.white);
-
     }
 
     protected abstract int initLayout();
@@ -53,47 +52,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public String translation(String str1, String str2, String msg) {
-        Language langFrom = LanguageUtils.getLangByName(str1);
-        Language langTo = LanguageUtils.getLangByName(str2);
-
-        final String[] result = {""};
-        TranslateParameters tps = new TranslateParameters.Builder()
-                .source("Android-Translation")
-                .from(langFrom)
-                .to(langTo)
-                .build();
-
-        Translator.getInstance(tps).lookup(msg, "requestId", new TranslateListener() {
-
-            @Override
-            public void onError(TranslateErrorCode translateErrorCode, String s) {
-                Toast.makeText(context, translateErrorCode.getCode(), Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onResult(Translate translate, String s, String s1) {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            result[0] = translate.getTranslations().toString();
-                            Toast.makeText(context, translate.getTranslations().toString(), Toast.LENGTH_SHORT).show();
-                        } catch (Exception e) {
-                            Toast.makeText(context, "抱歉，我还在学习该语言中...", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-            }
-
-            @Override
-            public void onResult(List<Translate> list, List<String> list1, List<TranslateErrorCode> list2, String s) {
-
-            }
-        });
-
-        return result[0];
-    }
 
 
 
