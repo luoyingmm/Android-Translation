@@ -1,6 +1,7 @@
 # 翻译APP
-
-# <img src="https://luoyingmm.oss-cn-shanghai.aliyuncs.com/img/Screenshot_20210723_225732.jpg" alt="Screenshot_20210723_225732" style="zoom:20%;" /><img src="https://luoyingmm.oss-cn-shanghai.aliyuncs.com/img/Screenshot_20210723_225504.jpg" alt="Screenshot_20210723_225504" style="zoom:20%;" />
+<p align="middle">
+<img src="https://luoyingmm.oss-cn-shanghai.aliyuncs.com/img/Screenshot_20210723_225732.jpg" alt="Your image title" width="250"/><img src="https://luoyingmm.oss-cn-shanghai.aliyuncs.com/img/Screenshot_20210723_225504.jpg" alt="Screenshot_20210723_225504" width="250"/>
+</p>
 
 
 
@@ -16,7 +17,7 @@
 
 ## 翻译API
 
-* [有道智云][https://ai.youdao.com/]
+* [有道智云](https://ai.youdao.com/)
 
 ## 关于我
 
