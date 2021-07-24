@@ -1,6 +1,7 @@
 package com.luoyingmm.fragment;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -97,6 +98,12 @@ public abstract class BaseFragment extends Fragment {
         values.put("translation",translation);
         values.put("result", result);
         db.insert("translationData", null, values);
+    }
+
+    public void navigateToWithBundle(Class cls,Bundle bundle){
+        Intent intent = new Intent(getActivity(),cls);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 
 

@@ -56,7 +56,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
      * 自定义的接口
      */
     public interface OnItemClickListener {
-        void onItemClick(View view, int position);
+        void onItemClick(View view, String str);
     }
 
     @NonNull
@@ -112,7 +112,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             @Override
             public void onClick(View v) {
                 if (onItemClickListener != null) {
-                    onItemClickListener.onItemClick(v, holder.getAdapterPosition() + 1);
+                    onItemClickListener.onItemClick(v,holder.tv_1.getText().toString() );
                 }
             }
         });

@@ -1,5 +1,6 @@
 package com.luoyingmm.fragment;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -15,6 +16,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.os.Handler;
 import android.os.Message;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,8 +26,10 @@ import android.widget.Toast;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.luoyingmm.R;
+import com.luoyingmm.activity.WebActivity;
 import com.luoyingmm.adapter.RecyclerViewAdapter;
 import com.luoyingmm.entity.TranslationData;
+import com.luoyingmm.util.DialogUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,9 +84,24 @@ public class CollectFragment extends BaseFragment {
         recyclerView.setAdapter(mAdapter);
 
         mAdapter.setOnItemClickListener(new RecyclerViewAdapter.OnItemClickListener() {
+
             @Override
-            public void onItemClick(View view, int position) {
-                Toast.makeText(getActivity(), "第" + position + "条数据", Toast.LENGTH_SHORT).show();
+            public void onItemClick(View view, String str) {
+                DialogUtil.showAlertDialog((Activity) getActivity(), R.mipmap.jump, "跳转提示", "是否切换到详情界面？",
+                        "确定", "取消", true, new DialogUtil.AlertDialogBtnClickListener() {
+                            @Override
+                            public void clickPositive() {
+                                String url = "https://translate.google.cn/?sl=en&tl=zh-CN&text="+str+"&op=translate";
+                                Bundle bundle = new Bundle();
+                                bundle.putString("url",url);
+                                navigateToWithBundle(WebActivity.class,bundle);
+                            }
+                            @Override
+                            public void clickNegative() {
+
+                            }
+                        });
+
             }
         });
 

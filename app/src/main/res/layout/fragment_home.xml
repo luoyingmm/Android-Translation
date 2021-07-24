@@ -69,7 +69,12 @@
         android:layout_marginLeft="@dimen/dp_20"
         android:layout_marginRight="@dimen/dp_20"
         android:background="@drawable/enter_radius">
-
+        <FrameLayout
+            android:id="@+id/fragment_result"
+            android:layout_width="match_parent"
+            android:layout_height="78dp"
+            android:layout_marginRight="@dimen/dp_40"
+            >
             <EditText
                 android:id="@+id/et_content"
                 android:layout_width="wrap_content"
@@ -83,6 +88,8 @@
                 android:layout_marginLeft="@dimen/dp_10"
                 android:textColor="@color/black"
                 />
+        </FrameLayout>
+
 
         <ImageView
             android:id="@+id/iv_copy"

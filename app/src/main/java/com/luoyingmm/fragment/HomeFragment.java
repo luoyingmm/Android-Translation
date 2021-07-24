@@ -1,5 +1,6 @@
 package com.luoyingmm.fragment;
 
+import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -39,7 +40,9 @@ import android.widget.Toast;
 import com.google.android.material.snackbar.Snackbar;
 import com.jaredrummler.materialspinner.MaterialSpinner;
 import com.luoyingmm.R;
+import com.luoyingmm.activity.WebActivity;
 import com.luoyingmm.entity.TranslationData;
+import com.luoyingmm.util.DialogUtil;
 import com.youdao.sdk.app.Language;
 import com.youdao.sdk.app.LanguageUtils;
 import com.youdao.sdk.ydonlinetranslate.Translator;
@@ -66,7 +69,9 @@ public class HomeFragment extends BaseFragment {
     private Button btn_collect;
     private RecyclerView recyclerView;
     private FrameLayout frameLayout;
+    private FrameLayout fragment_result;
     private ImageView iv_copy;
+
     Handler handler;
     public HomeFragment() {
         // Required empty public constructor
@@ -93,6 +98,7 @@ public class HomeFragment extends BaseFragment {
         frameLayout = mRootView.findViewById(R.id.frameLayout);
         iv_copy = mRootView.findViewById(R.id.iv_copy);
         recyclerView = mRootView.findViewById(R.id.recyclerview);
+        fragment_result = mRootView.findViewById(R.id.fragment_result);
         banEditTextOnlyLine(et_enter);
         et_content.setKeyListener(null);
 
@@ -190,6 +196,43 @@ public class HomeFragment extends BaseFragment {
                 }
             }
         });
+
+        fragment_result.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                if (!TextUtils.isEmpty(et_enter.getText().toString()) && !TextUtils.isEmpty(et_content.getText().toString())) {
+                    DialogUtil.showAlertDialog((Activity) getActivity(), R.mipmap.jump, "跳转提示", "是否切换到详情界面？",
+                            "确定", "取消", true, new DialogUtil.AlertDialogBtnClickListener() {
+                                @Override
+                                public void clickPositive() {
+                                    String url = "https://translate.google.cn/?sl=en&tl=zh-CN&text=" + et_content.getText().toString() + "&op=translate";
+                                    Bundle bundle = new Bundle();
+                                    bundle.putString("url", url);
+                                    navigateToWithBundle(WebActivity.class, bundle);
+                                }
+
+                                @Override
+                                public void clickNegative() {
+
+                                }
+                            });
+                }
+                return true;
+            }
+        });
+
+        fragment_result.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!"true".equals(getStringFromSp("tip"))) {
+                    if (!TextUtils.isEmpty(et_enter.getText().toString()) && !TextUtils.isEmpty(et_content.getText().toString())) {
+                        Toast.makeText(getActivity(), "Tip:长按『显示的结果』框可以跳转到详情界面哦~", Toast.LENGTH_LONG).show();
+                    }
+                }
+                saveStringToSp("tip","true");
+            }
+        });
+
     }
 
     //去重，防止用户多次输入重复值
