@@ -7,7 +7,7 @@
 * 目前只完成了一小部分，后续会逐步完成收藏和我的页面。
 
 <p align="middle">
-<img src="https://luoyingmm.oss-cn-shanghai.aliyuncs.com/img/Screenshot_20210723_225732.jpg" alt="封面" width="250"/><img src="https://luoyingmm.oss-cn-shanghai.aliyuncs.com/img/Screenshot_20210724_001329.jpg" alt="主页" width="250"/>
+<img src="https://luoyingmm.oss-cn-shanghai.aliyuncs.com/img/cover.jpg" alt="封面" width="250"/><img src="https://luoyingmm.oss-cn-shanghai.aliyuncs.com/img/Screenshot_20210724_001329.jpg" alt="主页" width="250"/>
 </p>
 
 ## 翻译API
