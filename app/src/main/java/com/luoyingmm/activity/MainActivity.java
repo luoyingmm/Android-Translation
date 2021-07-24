@@ -19,6 +19,7 @@ import com.luoyingmm.entity.TabEntity;
 import com.luoyingmm.fragment.CollectFragment;
 import com.luoyingmm.fragment.HomeFragment;
 import com.luoyingmm.fragment.MyFragment;
+import com.luoyingmm.sql.DatabaseHelper;
 import com.youdao.sdk.app.Language;
 import com.youdao.sdk.app.LanguageUtils;
 import com.youdao.sdk.app.YouDaoApplication;

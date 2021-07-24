@@ -67,27 +67,38 @@
         android:layout_width="match_parent"
         android:layout_height="78dp"
         android:layout_marginLeft="@dimen/dp_20"
-
         android:layout_marginRight="@dimen/dp_20"
         android:background="@drawable/enter_radius">
-        <EditText
-            android:id="@+id/et_content"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:hint="@string/translation_tip_2"
-            android:layout_gravity="center|left"
-            android:textSize="@dimen/dp_15"
-            android:textIsSelectable="true"
-            android:layout_marginLeft="@dimen/dp_10"
-            android:textColor="@color/black"
+
+            <EditText
+                android:id="@+id/et_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:hint="@string/translation_tip_2"
+                android:layout_gravity="center|left"
+                android:textSize="@dimen/dp_15"
+                android:layout_marginRight="@dimen/dp_40"
+                android:textIsSelectable="true"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:textColor="@color/black"
+                />
+
+        <ImageView
+            android:id="@+id/iv_copy"
+            android:layout_width="@dimen/dp_20"
+            android:layout_height="@dimen/dp_20"
+            android:src="@drawable/copy_effect"
+            android:layout_marginRight="10dp"
+            android:layout_gravity="right|center"
             />
+
     </FrameLayout>
     <Button
         android:id="@+id/btn_collect"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/byutton_effect"
+        android:background="@drawable/button_effect"
         android:layout_marginLeft="@dimen/dp_20"
         android:layout_marginRight="@dimen/dp_20"
         android:text="收藏单词"

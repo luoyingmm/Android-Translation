@@ -1,5 +1,7 @@
 package com.luoyingmm.fragment;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -10,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Handler;
 import android.os.Message;
+import android.system.StructUtsname;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.Spanned;
@@ -29,12 +32,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.HeaderViewListAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.jaredrummler.materialspinner.MaterialSpinner;
 import com.luoyingmm.R;
+import com.luoyingmm.entity.TranslationData;
 import com.youdao.sdk.app.Language;
 import com.youdao.sdk.app.LanguageUtils;
 import com.youdao.sdk.ydonlinetranslate.Translator;
@@ -46,9 +51,11 @@ import com.youdao.sdk.ydtranslate.TranslateParameters;
 
 import java.util.Arrays;
 import java.util.BitSet;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.PropertyResourceBundle;
+import java.util.stream.Collectors;
 
 public class HomeFragment extends BaseFragment {
     private MaterialSpinner spinner_1;
@@ -59,6 +66,7 @@ public class HomeFragment extends BaseFragment {
     private Button btn_collect;
     private RecyclerView recyclerView;
     private FrameLayout frameLayout;
+    private ImageView iv_copy;
     Handler handler;
     public HomeFragment() {
         // Required empty public constructor
@@ -83,8 +91,11 @@ public class HomeFragment extends BaseFragment {
         et_content = mRootView.findViewById(R.id.et_content);
         btn_collect = mRootView.findViewById(R.id.btn_collect);
         frameLayout = mRootView.findViewById(R.id.frameLayout);
+        iv_copy = mRootView.findViewById(R.id.iv_copy);
+        recyclerView = mRootView.findViewById(R.id.recyclerview);
         banEditTextOnlyLine(et_enter);
         et_content.setKeyListener(null);
+
     }
 
     @Override
@@ -154,11 +165,42 @@ public class HomeFragment extends BaseFragment {
                     } else {
                         Toast.makeText(getActivity(), R.string.toast_successful, Toast.LENGTH_SHORT).show();
                     }
+                    insertDataBase(et_enter.getText().toString(),et_content.getText().toString());
+                    CollectFragment.data.add(new TranslationData(et_enter.getText().toString(),et_content.getText().toString()));
+                    //去重，防止用户多次输入重复值
+                    duplicateRemoval();
+                    CollectFragment.mAdapter.notifyItemChanged(CollectFragment.data.size()-1);
                 }else {
                     Toast.makeText(getActivity(), R.string.toast_failed, Toast.LENGTH_SHORT).show();
                 }
             }
         });
+
+        iv_copy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!TextUtils.isEmpty(et_content.getText().toString())) {
+                    ClipboardManager clipboardManager = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+                    String ocrText = et_content.getText().toString();
+                    ClipData mClipData = ClipData.newPlainText("OcrText", ocrText);
+                    clipboardManager.setPrimaryClip(mClipData);
+                    Toast.makeText(getActivity(), R.string.copy_successful, Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(getActivity(),R.string.toast_failed, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    //去重，防止用户多次输入重复值
+    private void duplicateRemoval() {
+        for (int i = 0; i < CollectFragment.data.size(); i++) {
+            for (int j = 0; j < CollectFragment.data.size(); j++) {
+                if(i != j && CollectFragment.data.get(i).getTranslation().equals(CollectFragment.data.get(j).getTranslation())) {
+                    CollectFragment.data.remove(CollectFragment.data.get(j));
+                }
+            }
+        }
     }
 
 

@@ -1,6 +1,8 @@
 package com.luoyingmm.entity;
 
-public class TranslationData {
+import java.io.Serializable;
+
+public class TranslationData implements Serializable{
     private String translation;
     private String result;
 

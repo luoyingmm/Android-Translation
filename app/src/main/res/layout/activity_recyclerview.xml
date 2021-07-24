@@ -1,40 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:gravity="center"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView
-        android:id="@+id/tv_use"
-        android:layout_width="wrap_content"
+    android:layout_height="50dp">
+    <LinearLayout
+        android:id="@+id/ll_translation"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/sp_20"
-        android:textColor="@color/black"
-        android:text="你好"
-        />
-    <TextView
-        android:id="@+id/tv_byUse"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello"
-       android:layout_toRightOf="@id/tv_use"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="@dimen/dp_20"
-        android:gravity="center"
-        />
+        android:layout_marginRight="130dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="@dimen/sp_20"
+        >
+        <TextView
+            android:id="@+id/tv_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp_15"
+            android:textColor="@color/black"
+            android:ellipsize="end"
+            android:text="你好"
+            android:maxLines="1"
+            />
+        <TextView
+            android:id="@+id/tv_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hello"
+            android:layout_marginLeft="@dimen/sp_20"
+            android:textSize="@dimen/sp_13"
+            android:maxLines="1"
+            android:ellipsize="end"
+            />
+    </LinearLayout>
 
-    <ImageView
-        android:id="@+id/iv_translation_collect"
-        android:layout_width="35dp"
-        android:layout_height="31dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="14dp"
-        android:src="@mipmap/translation_collect" />
 
     <ImageView
         android:id="@+id/iv_copy"
-        android:layout_width="35dp"
-        android:layout_height="31dp"
-        android:layout_toLeftOf="@id/iv_translation_collect"
-        android:layout_marginRight="44dp"
-        android:src="@mipmap/copy" />
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:src="@drawable/copy_effect" />
+
+    <ImageView
+        android:id="@+id/iv_delete"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginRight="50dp"
+        android:layout_toLeftOf="@id/iv_copy"
+        android:src="@drawable/delete_effect" />
+
+
 
 </RelativeLayout>

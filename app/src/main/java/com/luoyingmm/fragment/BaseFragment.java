@@ -1,7 +1,10 @@
 package com.luoyingmm.fragment;
 
+import android.content.ContentValues;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -17,6 +20,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.luoyingmm.R;
+import com.luoyingmm.activity.MainActivity;
+import com.luoyingmm.sql.DatabaseHelper;
 import com.luoyingmm.util.StatusBarUtil;
 import com.youdao.sdk.app.Language;
 import com.youdao.sdk.app.LanguageUtils;
@@ -35,6 +40,9 @@ import static android.content.Context.MODE_PRIVATE;
 public abstract class BaseFragment extends Fragment {
     protected View mRootView;
     String result = "";
+    DatabaseHelper databaseHelper;
+    SQLiteDatabase db;
+    ContentValues values;
     @Nullable
     @org.jetbrains.annotations.Nullable
     @Override
@@ -50,6 +58,8 @@ public abstract class BaseFragment extends Fragment {
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         StatusBarUtil.setStatusBarMode(getActivity(), true, R.color.white);
+         databaseHelper = new DatabaseHelper(getActivity(), "TranslationData.db", null, 1);
+         db = databaseHelper.getWritableDatabase();
         initData();
     }
 
@@ -80,6 +90,13 @@ public abstract class BaseFragment extends Fragment {
     protected String getStringFromSp(String key){
         SharedPreferences sp = getActivity().getSharedPreferences("data", MODE_PRIVATE);
         return sp.getString(key,"");
+    }
+
+    protected void insertDataBase(String translation,String result){
+        values = new ContentValues();
+        values.put("translation",translation);
+        values.put("result", result);
+        db.insert("translationData", null, values);
     }
 
 
