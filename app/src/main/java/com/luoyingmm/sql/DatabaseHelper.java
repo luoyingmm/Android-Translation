@@ -13,7 +13,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table translationData(translation text primary key,result text)");
+        db.execSQL("create table translationData(translation text ,result text,primary key(translation,result))");
     }
 
     @Override

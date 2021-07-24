@@ -6,7 +6,11 @@
     <string name="translation_tip_2">显示的结果</string>
     <string name="toast_first_successful">收藏成功，可前往下方收藏界面查看~</string>
     <string name="toast_successful">收藏成功</string>
+    <string name="toast_failed_2">你已经收藏过啦！</string>
     <string name="toast_failed">请先输入内容!</string>
     <string name="copy_successful">复制成功！</string>
+    <string name="web_title">详情</string>
+    <string name="collect_title">收藏</string>
+    <string name="my_title">我的</string>
 
 </resources>

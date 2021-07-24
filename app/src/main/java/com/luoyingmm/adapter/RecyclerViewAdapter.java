@@ -5,9 +5,11 @@ import android.app.AlertDialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.media.Image;
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,6 +25,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.luoyingmm.R;
+import com.luoyingmm.activity.WebActivity;
 import com.luoyingmm.entity.TranslationData;
 import com.luoyingmm.sql.DatabaseHelper;
 import com.luoyingmm.util.DialogUtil;
@@ -117,6 +120,19 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             }
         });
 
+        holder.iv_details.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!(data.size() == 0 )){
+                    String url = "https://translate.google.cn/?sl=en&tl=zh-CN&text="+data.get(position).getTranslation()+"&op=translate";
+                    Bundle bundle = new Bundle();
+                    bundle.putString("url",url);
+                    Intent intent = new Intent(mContext,WebActivity.class );
+                    intent.putExtras(bundle);
+                    mContext.startActivity(intent);
+                }
+            }
+        });
 
     }
 
@@ -141,6 +157,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         TextView tv_2;
         ImageView iv_copy;
         ImageView iv_delete;
+        ImageView iv_details;
         LinearLayout ll_translation;
         public ViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
@@ -149,6 +166,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             iv_copy  = itemView.findViewById(R.id.iv_copy);
             iv_delete  = itemView.findViewById(R.id.iv_delete);
             ll_translation  = itemView.findViewById(R.id.ll_translation);
+            iv_details  = itemView.findViewById(R.id.iv_details);
         }
     }
 }
