@@ -165,17 +165,27 @@ public class HomeFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 if (!TextUtils.isEmpty(et_content.getText().toString()) || !TextUtils.isEmpty(et_enter.getText().toString()) ) {
-                    if (!getStringFromSp("total").equals("11")) {
-                        Toast.makeText(getActivity(), R.string.toast_first_successful, Toast.LENGTH_SHORT).show();
-                        saveStringToSp("total", getStringFromSp("total") + "1");
-                    } else {
-                        Toast.makeText(getActivity(), R.string.toast_successful, Toast.LENGTH_SHORT).show();
-                    }
                     insertDataBase(et_enter.getText().toString(),et_content.getText().toString());
                     CollectFragment.data.add(new TranslationData(et_enter.getText().toString(),et_content.getText().toString()));
+                    if (!getStringFromSp("total").equals("11")) {
+                        if ( duplicateRemoval()) {
+                            Toast.makeText(getActivity(), R.string.toast_first_successful, Toast.LENGTH_SHORT).show();
+                            CollectFragment.mAdapter.notifyItemChanged(CollectFragment.data.size());
+                            saveStringToSp("total", getStringFromSp("total") + "1");
+                        }else {
+                            Toast.makeText(getActivity(), R.string.toast_failed_2, Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        if ( duplicateRemoval()) {
+                            Toast.makeText(getActivity(), R.string.toast_first_successful, Toast.LENGTH_SHORT).show();
+                            CollectFragment.mAdapter.notifyItemChanged(CollectFragment.data.size());
+                        }else {
+                            Toast.makeText(getActivity(), R.string.toast_failed_2, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
                     //去重，防止用户多次输入重复值
-                    duplicateRemoval();
-                    CollectFragment.mAdapter.notifyItemChanged(CollectFragment.data.size()-1);
+                    Log.e("Home", CollectFragment.data.toString() );
                 }else {
                     Toast.makeText(getActivity(), R.string.toast_failed, Toast.LENGTH_SHORT).show();
                 }
@@ -236,14 +246,16 @@ public class HomeFragment extends BaseFragment {
     }
 
     //去重，防止用户多次输入重复值
-    private void duplicateRemoval() {
+    private boolean duplicateRemoval() {
         for (int i = 0; i < CollectFragment.data.size(); i++) {
             for (int j = 0; j < CollectFragment.data.size(); j++) {
-                if(i != j && CollectFragment.data.get(i).getTranslation().equals(CollectFragment.data.get(j).getTranslation())) {
+                if(i != j && CollectFragment.data.get(i).getTranslation().equals(CollectFragment.data.get(j).getTranslation()) && CollectFragment.data.get(i).getResult().equals(CollectFragment.data.get(j).getResult()) ) {
                     CollectFragment.data.remove(CollectFragment.data.get(j));
+                    return false;
                 }
             }
         }
+        return true;
     }
 
 
