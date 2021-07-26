@@ -24,13 +24,12 @@ public class WelcomeActivity extends BaseActivity {
             navigateTo(MainActivity.class);
             finish();
         }else{
-            saveStringToSp("login_flag","right");
             Typeface typeface = Typeface.createFromAsset(getAssets(), "font/welcomeFont.otf");
             tvAuthor.setTypeface(typeface);
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    navigateTo(MainActivity.class);
+                    navigateTo(LoginActivity.class);
                     finish();
                 }
             },1000);

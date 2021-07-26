@@ -24,8 +24,10 @@ import com.luoyingmm.R;
 import com.luoyingmm.activity.MainActivity;
 import com.luoyingmm.sql.DatabaseHelper;
 import com.luoyingmm.util.StatusBarUtil;
+import com.luoyingmm.util.StringUtils;
 import com.youdao.sdk.app.Language;
 import com.youdao.sdk.app.LanguageUtils;
+import com.youdao.sdk.app.YouDaoApplication;
 import com.youdao.sdk.ydonlinetranslate.Translator;
 import com.youdao.sdk.ydtranslate.Translate;
 import com.youdao.sdk.ydtranslate.TranslateErrorCode;
@@ -58,6 +60,14 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        if (!getStringFromSp("translationId").equals("")){
+            YouDaoApplication.init(mRootView.getContext(), getStringFromSp("translationId"));
+            Log.e("transs", "1"+ getStringFromSp("translationId"));
+        }else {
+            YouDaoApplication.init(mRootView.getContext(), "0f6e7821cecdcbda");
+            Log.e("transs", "2"+ getStringFromSp("translationId"));
+        }
+
         StatusBarUtil.setStatusBarMode(getActivity(), true, R.color.white);
          databaseHelper = new DatabaseHelper(getActivity(), "TranslationData.db", null, 1);
          db = databaseHelper.getWritableDatabase();

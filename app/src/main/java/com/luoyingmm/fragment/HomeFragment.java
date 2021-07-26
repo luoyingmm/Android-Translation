@@ -279,6 +279,8 @@ public class HomeFragment extends BaseFragment {
                     public void run() {
                         if (translateErrorCode.getCode() == 1){
                             Toast.makeText(getActivity(), "网络连接失败", Toast.LENGTH_SHORT).show();
+                        }else if (translateErrorCode.getCode() == 108){
+                            Toast.makeText(getActivity(), "注册是提供的应用ID无效", Toast.LENGTH_SHORT).show();
                         }else {
                             Toast.makeText(getActivity(), "连接失败，错误代码: " + translateErrorCode.getCode(), Toast.LENGTH_SHORT).show();
 

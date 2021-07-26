@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Looper;
 import android.view.KeyEvent;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,7 +33,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(initLayout());
         context = this;
-        YouDaoApplication.init(this, "0f6e7821cecdcbda");
+
         initView();
         initData();
         StatusBarUtil.setStatusBarMode(this, true, R.color.white);
@@ -54,15 +55,32 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     protected void saveStringToSp(String key,String val){
-        SharedPreferences sp = getSharedPreferences("login", MODE_PRIVATE);
+        SharedPreferences sp = getSharedPreferences("data", MODE_PRIVATE);
         SharedPreferences.Editor edit = sp.edit();
         edit.putString(key,val);
         edit.apply();
     }
     protected String getStringFromSp(String key){
-        SharedPreferences sp = getSharedPreferences("login", MODE_PRIVATE);
+        SharedPreferences sp = getSharedPreferences("data", MODE_PRIVATE);
         return sp.getString(key,"");
     }
 
+
+    public void showToastSync(String msg){
+        Looper.prepare();
+        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+        Looper.loop();
+    }
+
+    public void navigateToWithBundle(Class cls,Bundle bundle){
+        Intent intent = new Intent(context,cls);
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
+    public void navigateToWithFlag(Class cls,int flag){
+        Intent intent = new Intent(context, cls);
+        intent.setFlags(flag);
+        startActivity(intent);
+    }
 
 }
