@@ -7,7 +7,7 @@
 * 目前只完成了一部分，后续会逐步完成我的页面。
 
 <p align="middle">
-<img src="https://luoyingmm.oss-cn-shanghai.aliyuncs.com/img/cover.jpg" alt="封面" width="250"/><img src="https://luoyingmm.oss-cn-shanghai.aliyuncs.com/img/Screenshot_20210726_235253.jpg" alt="注册" width="250"/><img src="https://luoyingmm.oss-cn-shanghai.aliyuncs.com/img/Screenshot_20210724_001329.jpg" alt="主页" width="250"/><img src="https://luoyingmm.oss-cn-shanghai.aliyuncs.com/img/Screenshot_20210724_235027.jpg" alt="收藏" width="250"/>
+<img src="https://luoyingmm.oss-cn-shanghai.aliyuncs.com/img/cover.jpg" alt="封面" width="250"/><img src="https://luoyingmm.oss-cn-shanghai.aliyuncs.com/img/Screenshot_20210726_235253.jpg" alt="注册" width="250"/><img src="https://luoyingmm.oss-cn-shanghai.aliyuncs.com/img/Screenshot_20210724_001329.jpg" alt="主页" width="250"/>
 </p>
 
 
