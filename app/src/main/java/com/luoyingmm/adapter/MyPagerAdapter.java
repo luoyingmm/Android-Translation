@@ -5,8 +5,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.luoyingmm.fragment.MyFragment;
-
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;

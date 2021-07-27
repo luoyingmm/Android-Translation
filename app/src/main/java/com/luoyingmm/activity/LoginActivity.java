@@ -109,6 +109,7 @@ public class LoginActivity extends BaseActivity {
                 Gson gson = new Gson();
                 LoginResponse loginResponse = gson.fromJson(res, LoginResponse.class);
                 if (loginResponse.getCode() == 0){
+                    saveStringToSp("username",account);
                     saveStringToSp("login_flag","right");
                     navigateToWithFlag(MainActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     showToastSync("登陆成功");
