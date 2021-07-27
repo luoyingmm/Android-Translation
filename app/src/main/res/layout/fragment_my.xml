@@ -108,9 +108,6 @@
             android:layout_marginRight="15dp"
             android:background="#EEEEEE" />
 
-
-
-
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"

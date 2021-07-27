@@ -11,7 +11,7 @@ import com.luoyingmm.R;
 import com.luoyingmm.jsbridge.BridgeWebView;
 
 
-@SuppressLint("SetJavaScriptEnabled")
+
 public class WebActivity extends BaseActivity{
     private BridgeWebView bridgeWebView;
     private String url;

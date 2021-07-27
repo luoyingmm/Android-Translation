@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -19,7 +18,7 @@ import com.bumptech.glide.Glide;
 import com.luoyingmm.R;
 import com.luoyingmm.activity.LoginActivity;
 import com.luoyingmm.activity.MainActivity;
-import com.luoyingmm.activity.WebActivity;
+import com.luoyingmm.activity.SetActivity;
 import com.luoyingmm.util.DialogUtil;
 import com.luoyingmm.util.PictureSelectUtil;
 import com.luoyingmm.util.SPUtils;
@@ -119,6 +118,13 @@ public class MyFragment extends BaseFragment {
             }
         });
 
+        rl_set.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navigateTo(SetActivity.class);
+            }
+        });
+
         rl_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -145,5 +151,6 @@ public class MyFragment extends BaseFragment {
         });
 
     }
+
 
 }
