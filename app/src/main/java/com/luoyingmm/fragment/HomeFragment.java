@@ -43,8 +43,10 @@ import com.luoyingmm.R;
 import com.luoyingmm.activity.WebActivity;
 import com.luoyingmm.entity.TranslationData;
 import com.luoyingmm.util.DialogUtil;
+import com.luoyingmm.util.StringUtils;
 import com.youdao.sdk.app.Language;
 import com.youdao.sdk.app.LanguageUtils;
+import com.youdao.sdk.app.YouDaoApplication;
 import com.youdao.sdk.ydonlinetranslate.Translator;
 import com.youdao.sdk.ydtranslate.Translate;
 import com.youdao.sdk.ydtranslate.TranslateErrorCode;
@@ -189,6 +191,11 @@ public class HomeFragment extends BaseFragment {
                 }else {
                     Toast.makeText(getActivity(), R.string.toast_failed, Toast.LENGTH_SHORT).show();
                 }
+                if (CollectFragment.data.size() > 0){
+                    CollectFragment.tv_collect.setVisibility(View.GONE);
+                }else {
+                    CollectFragment.tv_collect.setVisibility(View.VISIBLE);
+                }
             }
         });
 
@@ -280,7 +287,8 @@ public class HomeFragment extends BaseFragment {
                         if (translateErrorCode.getCode() == 1){
                             Toast.makeText(getActivity(), "网络连接失败", Toast.LENGTH_SHORT).show();
                         }else if (translateErrorCode.getCode() == 108){
-                            Toast.makeText(getActivity(), "注册是提供的应用ID无效", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "注册时提供的应用ID无效，已经自动切换为默认ID，稍后可以在设置界面更改", Toast.LENGTH_LONG).show();
+                            YouDaoApplication.mAppKey = StringUtils.ID;
                         }else {
                             Toast.makeText(getActivity(), "连接失败，错误代码: " + translateErrorCode.getCode(), Toast.LENGTH_SHORT).show();
 

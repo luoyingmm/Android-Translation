@@ -21,6 +21,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.flyco.tablayout.CommonTabLayout;
@@ -40,6 +41,7 @@ public class CollectFragment extends BaseFragment {
     public static RecyclerViewAdapter mAdapter;//适配器
     private LinearLayoutManager mLinearLayoutManager;//布局管理器
     public static List<TranslationData> data;
+    public static TextView tv_collect;
     public CollectFragment() {
         // Required empty public constructor
     }
@@ -59,6 +61,7 @@ public class CollectFragment extends BaseFragment {
     @Override
     protected void initView() {
         recyclerView = mRootView.findViewById(R.id.recyclerview);
+        tv_collect = mRootView.findViewById(R.id.tv_collect);
         data = new ArrayList<>();
     }
 
@@ -105,7 +108,11 @@ public class CollectFragment extends BaseFragment {
             }
         });
 
-
+        if (data.size() > 0){
+            tv_collect.setVisibility(View.GONE);
+        }else {
+            tv_collect.setVisibility(View.VISIBLE);
+        }
 
     }
 }

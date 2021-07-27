@@ -26,6 +26,7 @@
     <string name="login_back">返回</string>
     <string name="translation_id">有道智云应用ID(选填)</string>
     <string name="verification">验证码</string>
+    <string name="collect_tip">当前还没有收藏的单词哦~</string>
 
 
 </resources>

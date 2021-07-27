@@ -24,8 +24,6 @@ public class WelcomeActivity extends BaseActivity {
             navigateTo(MainActivity.class);
             finish();
         }else{
-            Typeface typeface = Typeface.createFromAsset(getAssets(), "font/welcomeFont.otf");
-            tvAuthor.setTypeface(typeface);
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {

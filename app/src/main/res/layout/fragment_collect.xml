@@ -20,9 +20,16 @@
             android:text="@string/collect_title"
             android:textColor="@color/black"
             android:textSize="22sp" />
-
     </androidx.appcompat.widget.Toolbar>
-
+    <TextView
+        android:id="@+id/tv_collect"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/collect_tip"
+        android:textColor="@color/blue"
+        android:fontFamily="@font/loginfont"
+        android:textSize="@dimen/dp_30"
+        android:gravity="center"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"

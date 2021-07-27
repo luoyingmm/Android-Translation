@@ -92,7 +92,7 @@ public class RegisteredActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 if (flag) {
-                    DialogUtil.showAlertDialog((Activity) RegisteredActivity.this, R.mipmap.jump, "关于ID", "为了防止同一api请求过多，可以去免费注册一个应用ID，只需要选择文本翻译(如果你不明白请点击否)",
+                    DialogUtil.showAlertDialog((Activity) RegisteredActivity.this, R.mipmap.jump, "关于ID", "为了防止同一api请求过多，可以去免费注册一个应用ID，只需要选择文本翻译(如果你不明白请勿随意填写)",
                             "前往注册", "否", true, new DialogUtil.AlertDialogBtnClickListener() {
                                 @Override
                                 public void clickPositive() {

@@ -27,6 +27,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.luoyingmm.R;
 import com.luoyingmm.activity.WebActivity;
 import com.luoyingmm.entity.TranslationData;
+import com.luoyingmm.fragment.CollectFragment;
 import com.luoyingmm.sql.DatabaseHelper;
 import com.luoyingmm.util.DialogUtil;
 
@@ -100,6 +101,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                             }
                             removeItem(position);
                             notifyItemRangeChanged(position, getItemCount() - position);
+                            if (data.size() > 0){
+                                CollectFragment.tv_collect.setVisibility(View.GONE);
+                            }else {
+                                CollectFragment.tv_collect.setVisibility(View.VISIBLE);
+                            }
                         }
                         @Override
                         public void clickNegative() {
