@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.jaredrummler.materialspinner.MaterialSpinner;
@@ -21,6 +22,7 @@ public class WelcomeActivity extends BaseActivity {
     protected void initView() {
         tvAuthor = findViewById(R.id.tv_author);
         if (getStringFromSp("login_flag").equals("right")){
+            Log.e("logout", getStringFromSp("login_flag") );
             navigateTo(MainActivity.class);
             finish();
         }else{

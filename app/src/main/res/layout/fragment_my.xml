@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".fragment.MyFragment">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/my_title"
+            android:textColor="@color/black"
+            android:textSize="22sp" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="103dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dp_20">
+
+        <com.luoyingmm.view.CircleImageView
+            android:id="@+id/iv_img"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@mipmap/change_head" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/test"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/my_name"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="#EEEEEE" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/rl_collect"
+            android:layout_width="match_parent"
+            android:layout_height="78dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp">
+
+            <ImageView
+                android:id="@+id/img_collect"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/collect_unselect" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/img_collect"
+                android:text="我的收藏"
+                android:textColor="#404040"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/icon_left_arrow" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="#EEEEEE" />
+
+
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="#EEEEEE" />
+
+        <RelativeLayout
+            android:id="@+id/rl_set"
+            android:layout_width="match_parent"
+            android:layout_height="78dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp">
+
+            <ImageView
+                android:id="@+id/iv_set"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/set_select" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/iv_set"
+                android:text="@string/my_set"
+                android:textColor="#404040"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/icon_left_arrow" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="#EEEEEE" />
+
+        <RelativeLayout
+            android:id="@+id/rl_logout"
+            android:layout_width="match_parent"
+            android:layout_height="78dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp">
+
+            <ImageView
+                android:id="@+id/img_logout"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/logout" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/img_logout"
+                android:text="退出登录"
+                android:textColor="#404040"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/icon_left_arrow" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="#EEEEEE" />
+    </LinearLayout>
+</LinearLayout>

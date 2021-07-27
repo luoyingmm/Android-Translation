@@ -1,5 +1,7 @@
 package com.luoyingmm.activity;
 
+import android.view.View;
+
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
@@ -11,20 +13,20 @@ import com.luoyingmm.adapter.MyPagerAdapter;
 import com.luoyingmm.entity.TabEntity;
 import com.luoyingmm.fragment.CollectFragment;
 import com.luoyingmm.fragment.HomeFragment;
-import com.luoyingmm.fragment.SetFragment;
+import com.luoyingmm.fragment.MyFragment;
 
 import java.util.ArrayList;
 
 public class MainActivity extends BaseActivity {
-    private String[] mTitles = {"首页", "收藏", "设置"};
+    private String[] mTitles = {"首页", "收藏", "我的"};
     private int[] mIconUnselectIds = {
             R.mipmap.home_unselect, R.mipmap.collect_unselect,
-            R.mipmap.set_select};
+            R.mipmap.own_unselect};
     private int[] mIconSelectIds = {
             R.mipmap.home_select, R.mipmap.collect_select,
-            R.mipmap.set_unselect};
+            R.mipmap.own_select};
     private ArrayList<Fragment> mFragments = new ArrayList<>();
-    private ViewPager viewPager;
+    public static ViewPager viewPager;
     private CommonTabLayout commonTabLayout;
     private ArrayList<CustomTabEntity> mTabEntities = new ArrayList<>();
 
@@ -43,7 +45,7 @@ public class MainActivity extends BaseActivity {
     protected void initData() {
         mFragments.add(HomeFragment.newInstance());
         mFragments.add(CollectFragment.newInstance());
-        mFragments.add(SetFragment.newInstance());
+        mFragments.add(MyFragment.newInstance());
 
         for (int i = 0; i < mTitles.length; i++) {
             mTabEntities.add(new TabEntity(mTitles[i], mIconSelectIds[i], mIconUnselectIds[i]));
@@ -81,5 +83,7 @@ public class MainActivity extends BaseActivity {
         });
 
         viewPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager(),mTitles,mFragments));
+
+
     }
 }

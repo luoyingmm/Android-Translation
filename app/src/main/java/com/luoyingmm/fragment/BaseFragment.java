@@ -116,6 +116,12 @@ public abstract class BaseFragment extends Fragment {
         startActivity(intent);
     }
 
+    public void navigateToWithFlag(Class cls, int flags) {
+        Intent in = new Intent(getActivity(), cls);
+        in.setFlags(flags);
+        startActivity(in);
+    }
+
 
     protected abstract int initLayout();
     protected abstract void initView();

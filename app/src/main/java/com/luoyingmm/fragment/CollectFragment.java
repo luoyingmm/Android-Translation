@@ -90,20 +90,10 @@ public class CollectFragment extends BaseFragment {
 
             @Override
             public void onItemClick(View view, String str) {
-                DialogUtil.showAlertDialog((Activity) getActivity(), R.mipmap.jump, "跳转提示", "是否切换到详情界面？",
-                        "确定", "取消", true, new DialogUtil.AlertDialogBtnClickListener() {
-                            @Override
-                            public void clickPositive() {
-                                String url = "https://translate.google.cn/?sl=en&tl=zh-CN&text="+str+"&op=translate";
-                                Bundle bundle = new Bundle();
-                                bundle.putString("url",url);
-                                navigateToWithBundle(WebActivity.class,bundle);
-                            }
-                            @Override
-                            public void clickNegative() {
-
-                            }
-                        });
+                String url = "https://translate.google.cn/?sl=en&tl=zh-CN&text="+str+"&op=translate";
+                Bundle bundle = new Bundle();
+                bundle.putString("url",url);
+                navigateToWithBundle(WebActivity.class,bundle);
 
             }
         });
