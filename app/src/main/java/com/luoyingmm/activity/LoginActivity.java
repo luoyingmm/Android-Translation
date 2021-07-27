@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.animation.ObjectAnimator;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.luoyingmm.R;
 import com.luoyingmm.api.Api;
@@ -24,6 +27,7 @@ import com.luoyingmm.entity.LoginResponse;
 
 
 import com.luoyingmm.util.DialogUtil;
+import com.luoyingmm.util.PictureSelectUtil;
 import com.luoyingmm.util.StringUtils;
 
 import java.util.HashMap;
@@ -87,6 +91,9 @@ public class LoginActivity extends BaseActivity {
                 login(account,password);
             }
         });
+
+
+
     }
 
     private void login(String account, String password) {

@@ -26,7 +26,7 @@ import com.youdao.sdk.ydtranslate.TranslateParameters;
 import java.util.List;
 
 public abstract class BaseActivity extends AppCompatActivity {
-    private Context context;
+    public Context context;
 
     @Override
     protected void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {

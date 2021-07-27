@@ -12,6 +12,9 @@
     <string name="web_title">详情</string>
     <string name="collect_title">收藏</string>
     <string name="my_title">我的</string>
+    <string name="my_set">设置</string>
+    <string name="my_name">欢迎来到快捷翻译</string>
+    <string name="test">test</string>
     <string name="login_name1">登录账号</string>
     <string name="login_name2">获取更佳体验</string>
     <string name="login_username1">用户名</string>

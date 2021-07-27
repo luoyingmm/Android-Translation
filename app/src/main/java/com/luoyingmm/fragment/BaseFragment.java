@@ -64,7 +64,7 @@ public abstract class BaseFragment extends Fragment {
             YouDaoApplication.init(mRootView.getContext(), getStringFromSp("translationId"));
             Log.e("transs", "1"+ getStringFromSp("translationId"));
         }else {
-            YouDaoApplication.init(mRootView.getContext(), "StringUtils.ID");
+            YouDaoApplication.init(mRootView.getContext(), StringUtils.ID);
             Log.e("transs", "2"+ getStringFromSp("translationId"));
         }
 
