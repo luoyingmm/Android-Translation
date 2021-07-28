@@ -138,6 +138,7 @@ public class MyFragment extends BaseFragment {
                                 edit.remove("translationId");
                                 edit.remove("photo");
                                 edit.remove("photoFlag");
+                                edit.remove("username");
                                 edit.apply();
                                 navigateToWithFlag(LoginActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                             }

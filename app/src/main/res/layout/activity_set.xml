@@ -68,7 +68,7 @@
                 android:layout_toRightOf="@id/tv_copy"
                 android:layout_marginLeft="@dimen/sp_10"
                 />
-            <Switch
+            <com.google.android.material.switchmaterial.SwitchMaterial
                 android:id="@+id/sw_copy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

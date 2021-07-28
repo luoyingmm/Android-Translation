@@ -322,4 +322,15 @@ public class HomeFragment extends BaseFragment {
             }
         });
     }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (getStringFromSp("sw_copy").equals("true")) {
+            ClipboardManager clipboardManager = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+            String ocrText = et_content.getText().toString();
+            ClipData mClipData = ClipData.newPlainText("OcrText", ocrText);
+            clipboardManager.setPrimaryClip(mClipData);
+        }
     }
+}
