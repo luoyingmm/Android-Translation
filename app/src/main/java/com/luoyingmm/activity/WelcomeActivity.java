@@ -2,6 +2,7 @@ package com.luoyingmm.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import com.jaredrummler.materialspinner.MaterialSpinner;
 import com.luoyingmm.R;
+import com.luoyingmm.util.StringUtils;
 
 public class WelcomeActivity extends BaseActivity {
     TextView tvAuthor;
@@ -21,7 +23,13 @@ public class WelcomeActivity extends BaseActivity {
     @Override
     protected void initView() {
         tvAuthor = findViewById(R.id.tv_author);
-        if (getStringFromSp("login_flag").equals("right")){
+    }
+
+    @Override
+    protected void initData() {
+        SharedPreferences loginFlag = getSharedPreferences("LoginFlag", MODE_PRIVATE);
+        StringUtils.username = loginFlag.getString("loginKey","");
+        if (!StringUtils.username.equals("")){
             Log.e("logout", getStringFromSp("login_flag") );
             navigateTo(MainActivity.class);
             finish();
@@ -34,11 +42,5 @@ public class WelcomeActivity extends BaseActivity {
                 }
             },1000);
         }
-
-    }
-
-    @Override
-    protected void initData() {
-
     }
 }

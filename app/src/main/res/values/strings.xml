@@ -33,6 +33,7 @@
     <string name="collect_tip">当前还没有收藏的单词哦~</string>
     <string name="used">常用</string>
     <string name="quick_copy">快捷复制</string>
+    <string name="ID">应用ID:</string>
 
 
 </resources>

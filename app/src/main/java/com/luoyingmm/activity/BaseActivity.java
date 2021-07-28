@@ -14,14 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.luoyingmm.R;
 import com.luoyingmm.util.StatusBarUtil;
-import com.youdao.sdk.app.Language;
-import com.youdao.sdk.app.LanguageUtils;
-import com.youdao.sdk.app.YouDaoApplication;
-import com.youdao.sdk.ydonlinetranslate.Translator;
-import com.youdao.sdk.ydtranslate.Translate;
-import com.youdao.sdk.ydtranslate.TranslateErrorCode;
-import com.youdao.sdk.ydtranslate.TranslateListener;
-import com.youdao.sdk.ydtranslate.TranslateParameters;
+import com.luoyingmm.util.StringUtils;
+
 
 import java.util.List;
 
@@ -55,13 +49,13 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     protected void saveStringToSp(String key,String val){
-        SharedPreferences sp = getSharedPreferences("data", MODE_PRIVATE);
+        SharedPreferences sp = getSharedPreferences(StringUtils.username, MODE_PRIVATE);
         SharedPreferences.Editor edit = sp.edit();
         edit.putString(key,val);
         edit.apply();
     }
     protected String getStringFromSp(String key){
-        SharedPreferences sp = getSharedPreferences("data", MODE_PRIVATE);
+        SharedPreferences sp = getSharedPreferences(StringUtils.username, MODE_PRIVATE);
         return sp.getString(key,"");
     }
 

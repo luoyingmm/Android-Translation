@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.luoyingmm.R;
@@ -58,6 +59,7 @@ public class RegisteredActivity extends BaseActivity {
         codeUtils = CodeUtils.getInstance();
         Bitmap bitmap = codeUtils.createBitmap();
         iv_verification.setImageBitmap(bitmap);
+
     }
 
     @Override
@@ -181,6 +183,7 @@ public class RegisteredActivity extends BaseActivity {
                                     "是", "否", true, new DialogUtil.AlertDialogBtnClickListener() {
                                         @Override
                                         public void clickPositive() {
+                                            StringUtils.username = account;
                                             if (!StringUtils.isEmpty(et_translation_id.getText().toString())){
                                                 saveStringToSp("translationId",et_translation_id.getText().toString());
                                             }
@@ -189,6 +192,7 @@ public class RegisteredActivity extends BaseActivity {
                                         }
                                         @Override
                                         public void clickNegative() {
+                                            StringUtils.username = account;
                                             if (!StringUtils.isEmpty(et_translation_id.getText().toString())){
                                                 saveStringToSp("translationId",et_translation_id.getText().toString());
                                             }

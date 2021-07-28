@@ -6,6 +6,7 @@ import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -53,7 +54,6 @@ public class LoginActivity extends BaseActivity {
         btn_login = findViewById(R.id.btn_login);
         btn_registered = findViewById(R.id.btn_registered);
         iv_verification = findViewById(R.id.iv_verification);
-
     }
 
     @Override
@@ -76,6 +76,8 @@ public class LoginActivity extends BaseActivity {
                             }
                             @Override
                             public void clickNegative() {
+                                saveSpFlag("temp");
+                                StringUtils.username = "temp";
                                 saveStringToSp("login_flag","right");
                                 navigateTo(MainActivity.class);
                                 finish();
@@ -116,6 +118,8 @@ public class LoginActivity extends BaseActivity {
                 Gson gson = new Gson();
                 LoginResponse loginResponse = gson.fromJson(res, LoginResponse.class);
                 if (loginResponse.getCode() == 0){
+                    saveSpFlag(account);
+                    StringUtils.username = account;
                     saveStringToSp("username",account);
                     saveStringToSp("login_flag","right");
                     navigateToWithFlag(MainActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -131,8 +135,12 @@ public class LoginActivity extends BaseActivity {
                 showToastSync("网络异常，请检查你的网络连接");
             }
         });
+    }
 
-
-
+    private void saveSpFlag(String username) {
+        SharedPreferences loginFlag = getSharedPreferences("LoginFlag", MODE_PRIVATE);
+        SharedPreferences.Editor edit = loginFlag.edit();
+        edit.putString("loginKey",username);
+        edit.apply();
     }
 }

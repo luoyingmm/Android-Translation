@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -37,12 +39,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.snackbar.Snackbar;
 import com.jaredrummler.materialspinner.MaterialSpinner;
 import com.luoyingmm.R;
 import com.luoyingmm.activity.WebActivity;
 import com.luoyingmm.entity.TranslationData;
 import com.luoyingmm.util.DialogUtil;
+import com.luoyingmm.util.PictureSelectUtil;
 import com.luoyingmm.util.StringUtils;
 import com.youdao.sdk.app.Language;
 import com.youdao.sdk.app.LanguageUtils;
@@ -287,7 +291,7 @@ public class HomeFragment extends BaseFragment {
                         if (translateErrorCode.getCode() == 1){
                             Toast.makeText(getActivity(), "网络连接失败", Toast.LENGTH_SHORT).show();
                         }else if (translateErrorCode.getCode() == 108){
-                            Toast.makeText(getActivity(), "注册时提供的应用ID无效，已经自动切换为默认ID，稍后可以在设置界面更改", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(), "注册时提供的应用ID无效，已经自动切换为默认ID，稍后可以在我的->设置界面更改", Toast.LENGTH_LONG).show();
                             YouDaoApplication.mAppKey = StringUtils.ID;
                         }else {
                             Toast.makeText(getActivity(), "连接失败，错误代码: " + translateErrorCode.getCode(), Toast.LENGTH_SHORT).show();

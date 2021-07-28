@@ -28,15 +28,9 @@ import com.luoyingmm.util.StringUtils;
 import com.youdao.sdk.app.Language;
 import com.youdao.sdk.app.LanguageUtils;
 import com.youdao.sdk.app.YouDaoApplication;
-import com.youdao.sdk.ydonlinetranslate.Translator;
-import com.youdao.sdk.ydtranslate.Translate;
-import com.youdao.sdk.ydtranslate.TranslateErrorCode;
-import com.youdao.sdk.ydtranslate.TranslateListener;
-import com.youdao.sdk.ydtranslate.TranslateParameters;
+
 
 import org.jetbrains.annotations.NotNull;
-
-import java.util.List;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -93,13 +87,13 @@ public abstract class BaseFragment extends Fragment {
     }
 
     protected void saveStringToSp(String key,String val){
-        SharedPreferences sp = getActivity().getSharedPreferences("data", MODE_PRIVATE);
+        SharedPreferences sp = getActivity().getSharedPreferences(StringUtils.username, MODE_PRIVATE);
         SharedPreferences.Editor edit = sp.edit();
         edit.putString(key,val);
         edit.apply();
     }
     protected String getStringFromSp(String key){
-        SharedPreferences sp = getActivity().getSharedPreferences("data", MODE_PRIVATE);
+        SharedPreferences sp = getActivity().getSharedPreferences(StringUtils.username, MODE_PRIVATE);
         return sp.getString(key,"");
     }
 

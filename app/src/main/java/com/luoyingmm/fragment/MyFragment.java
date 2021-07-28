@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -23,6 +24,8 @@ import com.luoyingmm.util.DialogUtil;
 import com.luoyingmm.util.PictureSelectUtil;
 import com.luoyingmm.util.SPUtils;
 import com.luoyingmm.util.StringUtils;
+
+import static android.content.Context.MODE_PRIVATE;
 
 
 public class MyFragment extends BaseFragment {
@@ -56,11 +59,14 @@ public class MyFragment extends BaseFragment {
         rl_collect = mRootView.findViewById(R.id.rl_collect);
         rl_set = mRootView.findViewById(R.id.rl_set);
         rl_logout = mRootView.findViewById(R.id.rl_logout);
-        Bitmap bitmap = SPUtils.getBitmapFromSharedPreferences(getActivity(), "data", "photo", "");
+        Bitmap bitmap = SPUtils.getBitmapFromSharedPreferences(getActivity(), StringUtils.username, "photo", "");
         if (!StringUtils.isEmpty(getStringFromSp("photoFlag"))){
             iv_img.setImageBitmap(bitmap);
+            Log.e("mytest", StringUtils.username);
+            System.out.println(StringUtils.username);
         }else {
             iv_img.setImageResource(R.mipmap.change_head);
+            System.out.println(StringUtils.username);
         }
     }
 
@@ -89,8 +95,7 @@ public class MyFragment extends BaseFragment {
                                                 Glide.with(getActivity()).load(uri).into(iv_img);
                                             }
                                         }).select();
-                                SPUtils.saveBitmapToSharedPreferences(getActivity(),"data","photo",((BitmapDrawable) ((ImageView) iv_img).getDrawable()).getBitmap());
-                                saveStringToSp("photoFlag","ok");
+
                             }
                             @Override
                             public void clickNegative() {
@@ -101,11 +106,8 @@ public class MyFragment extends BaseFragment {
                                             @Override
                                             public void onCallback(Uri uri) {
                                                 Glide.with(getActivity()).load(uri).into(iv_img);
-
                                             }
                                         }).select();
-                                SPUtils.saveBitmapToSharedPreferences(getActivity(),"data","photo",((BitmapDrawable) ((ImageView) iv_img).getDrawable()).getBitmap());
-                                saveStringToSp("photoFlag","ok");
                             }
                         });
 
@@ -114,7 +116,7 @@ public class MyFragment extends BaseFragment {
         rl_collect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.viewPager.setCurrentItem(1 );
+                MainActivity.viewPager.setCurrentItem(1);
             }
         });
 
@@ -132,13 +134,9 @@ public class MyFragment extends BaseFragment {
                         "确定", "取消", true, new DialogUtil.AlertDialogBtnClickListener() {
                             @Override
                             public void clickPositive() {
-                                SharedPreferences data = getActivity().getSharedPreferences("data", Context.MODE_PRIVATE);
-                                SharedPreferences.Editor edit = data.edit();
-                                edit.remove("login_flag");
-                                edit.remove("translationId");
-                                edit.remove("photo");
-                                edit.remove("photoFlag");
-                                edit.remove("username");
+                                SharedPreferences loginFlag = getActivity().getSharedPreferences("LoginFlag", MODE_PRIVATE);
+                                SharedPreferences.Editor edit = loginFlag.edit();
+                                edit.remove("loginKey");
                                 edit.apply();
                                 navigateToWithFlag(LoginActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                             }
@@ -147,11 +145,14 @@ public class MyFragment extends BaseFragment {
 
                             }
                         });
-
             }
         });
-
     }
 
-
+    @Override
+    public void onPause() {
+        super.onPause();
+        SPUtils.saveBitmapToSharedPreferences(getActivity(),StringUtils.username,"photo",((BitmapDrawable) ((ImageView) iv_img).getDrawable()).getBitmap());
+        saveStringToSp("photoFlag","ok");
+    }
 }
