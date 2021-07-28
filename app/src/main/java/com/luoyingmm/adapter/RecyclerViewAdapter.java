@@ -38,7 +38,7 @@ import java.util.List;
 import static android.content.Context.MODE_PRIVATE;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
-    private List<TranslationData> data;
+    public static List<TranslationData> data;
     private OnItemClickListener onItemClickListener;
     DatabaseHelper databaseHelper;
     SQLiteDatabase db;

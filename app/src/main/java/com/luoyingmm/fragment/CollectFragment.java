@@ -1,7 +1,9 @@
 package com.luoyingmm.fragment;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -21,6 +23,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +45,7 @@ public class CollectFragment extends BaseFragment {
     private LinearLayoutManager mLinearLayoutManager;//布局管理器
     public static List<TranslationData> data;
     public static TextView tv_collect;
+    private ImageView iv_deleteAll;
     public CollectFragment() {
         // Required empty public constructor
     }
@@ -62,6 +66,7 @@ public class CollectFragment extends BaseFragment {
     protected void initView() {
         recyclerView = mRootView.findViewById(R.id.recyclerview);
         tv_collect = mRootView.findViewById(R.id.tv_collect);
+        iv_deleteAll = mRootView.findViewById(R.id.iv_deleteAll);
         data = new ArrayList<>();
     }
 
@@ -104,5 +109,19 @@ public class CollectFragment extends BaseFragment {
             tv_collect.setVisibility(View.VISIBLE);
         }
 
+        iv_deleteAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(getActivity()).setMessage("确定删除全部收藏？").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        data.clear();
+                        mAdapter.notifyDataSetChanged();
+                        CollectFragment.tv_collect.setVisibility(View.VISIBLE);
+                        db.execSQL("delete from translationData");
+                    }
+                }).setNegativeButton("取消", null).show();
+            }
+        });
     }
 }

@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -185,7 +186,7 @@ public class RegisteredActivity extends BaseActivity {
                                         public void clickPositive() {
                                             StringUtils.username = account;
                                             if (!StringUtils.isEmpty(et_translation_id.getText().toString())){
-                                                saveStringToSp("translationId",et_translation_id.getText().toString());
+                                                saveSpFlag(account);
                                             }
                                             navigateTo(LoginActivity.class);
                                             finish();
@@ -194,7 +195,7 @@ public class RegisteredActivity extends BaseActivity {
                                         public void clickNegative() {
                                             StringUtils.username = account;
                                             if (!StringUtils.isEmpty(et_translation_id.getText().toString())){
-                                                saveStringToSp("translationId",et_translation_id.getText().toString());
+                                                saveSpFlag(account);
                                             }
                                         }
                                     });
@@ -209,5 +210,12 @@ public class RegisteredActivity extends BaseActivity {
                 showToastSync("网络异常，请检查你的网络连接");
             }
         });
+    }
+
+    private void saveSpFlag(String username) {
+        SharedPreferences loginFlag = getSharedPreferences(username, MODE_PRIVATE);
+        SharedPreferences.Editor edit = loginFlag.edit();
+        edit.putString("translationId",et_translation_id.getText().toString());
+        edit.apply();
     }
 }

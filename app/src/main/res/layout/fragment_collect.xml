@@ -20,6 +20,14 @@
             android:text="@string/collect_title"
             android:textColor="@color/black"
             android:textSize="22sp" />
+        <ImageView
+            android:id="@+id/iv_deleteAll"
+            android:layout_width="20dp"
+            android:layout_height="50dp"
+            android:src="@drawable/delete_effect"
+            android:layout_gravity="right|center_vertical"
+            android:layout_marginRight="@dimen/dp_20"
+            />
     </androidx.appcompat.widget.Toolbar>
     <TextView
         android:id="@+id/tv_collect"

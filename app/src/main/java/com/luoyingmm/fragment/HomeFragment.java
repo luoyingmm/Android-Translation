@@ -74,7 +74,6 @@ public class HomeFragment extends BaseFragment {
     private EditText et_content;
     private String sp_1,sp_2;
     private Button btn_collect;
-    private RecyclerView recyclerView;
     private FrameLayout frameLayout;
     private FrameLayout fragment_result;
     private ImageView iv_copy;
@@ -104,7 +103,6 @@ public class HomeFragment extends BaseFragment {
         btn_collect = mRootView.findViewById(R.id.btn_collect);
         frameLayout = mRootView.findViewById(R.id.frameLayout);
         iv_copy = mRootView.findViewById(R.id.iv_copy);
-        recyclerView = mRootView.findViewById(R.id.recyclerview);
         fragment_result = mRootView.findViewById(R.id.fragment_result);
         banEditTextOnlyLine(et_enter);
         et_content.setKeyListener(null);
@@ -117,6 +115,11 @@ public class HomeFragment extends BaseFragment {
         spinner_2.setItems("中文","英文","日文");
         sp_1 = "自动";
         sp_2 = "中文";
+        if (!StringUtils.isEmpty(getStringFromSp("spinner_1")) && !StringUtils.isEmpty(getStringFromSp("spinner_1"))) {
+            spinner_1.setSelectedIndex(Integer.parseInt(getStringFromSp("spinner_1")));
+            spinner_2.setSelectedIndex(Integer.parseInt(getStringFromSp("spinner_2")));
+        }
+
         spinner_1.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener() {
             @Override
             public void onItemSelected(MaterialSpinner view, int position, long id, Object item) {
@@ -180,7 +183,7 @@ public class HomeFragment extends BaseFragment {
                     insertDataBase(et_enter.getText().toString(),et_content.getText().toString());
                     CollectFragment.data.add(new TranslationData(et_enter.getText().toString(),et_content.getText().toString()));
                     if (!getStringFromSp("total").equals("11")) {
-                        if ( duplicateRemoval()) {
+                        if (duplicateRemoval()) {
                             Toast.makeText(getActivity(), R.string.toast_first_successful, Toast.LENGTH_SHORT).show();
                             CollectFragment.mAdapter.notifyItemChanged(CollectFragment.data.size());
                             saveStringToSp("total", getStringFromSp("total") + "1");
@@ -341,6 +344,9 @@ public class HomeFragment extends BaseFragment {
             ClipData mClipData = ClipData.newPlainText("OcrText", ocrText);
             clipboardManager.setPrimaryClip(mClipData);
         }
+
+        saveStringToSp("spinner_1",spinner_1.getSelectedIndex()+"");
+        saveStringToSp("spinner_2",spinner_2.getSelectedIndex()+"");
     }
 
 }
