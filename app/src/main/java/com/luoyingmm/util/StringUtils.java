@@ -1,5 +1,9 @@
 package com.luoyingmm.util;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
+
 public class StringUtils {
     public static final String ID = "0f6e7821cecdcbda";
     public static String username = "te";
@@ -10,4 +14,5 @@ public class StringUtils {
             return false;
         }
     }
+
 }

@@ -2,6 +2,7 @@ package com.luoyingmm.activity;
 
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
@@ -13,9 +14,6 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Switch;
-import android.widget.Toast;
-
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.switchmaterial.SwitchMaterial;
@@ -27,10 +25,12 @@ public class SetActivity extends BaseActivity {
     private Toolbar my_toolbar;
     private ImageView iv_why;
     private ImageView iv_quick;
+    private ImageView iv_read;
     private SwitchMaterial sw_copy;
     private EditText et_id;
     private Button btn_save;
     private SwitchMaterial sw_quick;
+    private SwitchMaterial sw_read;
 
     @Override
     protected int initLayout() {
@@ -46,6 +46,8 @@ public class SetActivity extends BaseActivity {
         btn_save = findViewById(R.id.btn_save);
         sw_quick = findViewById(R.id.sw_quick);
         iv_quick = findViewById(R.id.iv_quick);
+        iv_read = findViewById(R.id.iv_read);
+        sw_read = findViewById(R.id.sw_read);
         setSupportActionBar(my_toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
@@ -59,6 +61,10 @@ public class SetActivity extends BaseActivity {
         if (getStringFromSp("sw_quick").equals("true")){
             sw_quick.setChecked(true);
         }
+
+        if (getStringFromSp("sw_read").equals("true")){
+            sw_read.setChecked(true);
+        }
         my_toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,16 +74,25 @@ public class SetActivity extends BaseActivity {
         iv_why.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(SetActivity.this, "系统会自动复制翻译出来的内容", Toast.LENGTH_LONG).show();
+                new AlertDialog.Builder(SetActivity.this).setMessage("系统会自动复制翻译出来的内容").setNegativeButton("知道了",null).show();
             }
         });
 
         iv_quick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(SetActivity.this, "进入本软件后会自动进入输入状态", Toast.LENGTH_LONG).show();
+                new AlertDialog.Builder(SetActivity.this).setMessage("进入本软件后会自动进入输入状态").setNegativeButton("知道了",null).show();
             }
         });
+
+        iv_read.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(SetActivity.this).setMessage("注意:此功能要与『一键输入』共同打开。进入本软件后自动读取剪贴板内容并进行翻译，但可能存在少许延迟，出现无法读取情况，请谨慎使用!").setNegativeButton("知道了",null).show();
+            }
+        });
+
+
 
         sw_copy.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -98,6 +113,19 @@ public class SetActivity extends BaseActivity {
                     saveStringToSp("sw_quick","true");
                 }else {
                     saveStringToSp("sw_quick","false");
+                    sw_read.setChecked(false);
+                }
+            }
+        });
+
+        sw_read.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    saveStringToSp("sw_read","true");
+                    sw_quick.setChecked(true);
+                }else {
+                    saveStringToSp("sw_read","false");
                 }
             }
         });

@@ -35,7 +35,8 @@
     <string name="quick_copy">快捷复制</string>
     <string name="ID">应用ID:</string>
     <string name="save">保存</string>
-    <string name="quick">一键输入</string>
+    <string name="quick">一键开启输入框</string>
+    <string name="auto_read">自动读取剪贴板</string>
 
 
 </resources>

@@ -115,10 +115,7 @@ public class HomeFragment extends BaseFragment {
         spinner_2.setItems("中文","英文","日文");
         sp_1 = "自动";
         sp_2 = "中文";
-        if (!StringUtils.isEmpty(getStringFromSp("spinner_1")) && !StringUtils.isEmpty(getStringFromSp("spinner_1"))) {
-            spinner_1.setSelectedIndex(Integer.parseInt(getStringFromSp("spinner_1")));
-            spinner_2.setSelectedIndex(Integer.parseInt(getStringFromSp("spinner_2")));
-        }
+
 
         spinner_1.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener() {
             @Override
@@ -138,6 +135,14 @@ public class HomeFragment extends BaseFragment {
                 }
             }
         });
+
+        if (!StringUtils.isEmpty(getStringFromSp("spinner_1")) && !StringUtils.isEmpty(getStringFromSp("spinner_1"))) {
+            spinner_1.setSelectedIndex(Integer.parseInt(getStringFromSp("spinner_1")));
+            sp_1 = (String) spinner_1.getItems().get(Integer.parseInt(getStringFromSp("spinner_1")));
+            spinner_2.setSelectedIndex(Integer.parseInt(getStringFromSp("spinner_2")));
+            sp_2 = (String) spinner_2.getItems().get(Integer.parseInt(getStringFromSp("spinner_2")));
+
+        }
 
         frameLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -165,6 +170,7 @@ public class HomeFragment extends BaseFragment {
             public void afterTextChanged(Editable editable) {
                 if (!TextUtils.isEmpty(et_enter.getText().toString())) {
                     translation(sp_1, sp_2, et_enter.getText().toString());
+
                 }else {
                     et_content.setText("");
                 }
@@ -175,6 +181,21 @@ public class HomeFragment extends BaseFragment {
             System.out.println(getStringFromSp("sw_quick"));
             et_enter.requestFocus();
         }
+
+        if (getStringFromSp("sw_read").equals("true")){
+            spinner_1.setSelectedIndex(0);
+            sp_1 = "自动";
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable(){
+                @Override
+                public void run() {
+                    et_enter.setText(getClipboardContent());
+                }
+            },100);
+        }
+
+
+
 
         btn_collect.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -280,7 +301,7 @@ public class HomeFragment extends BaseFragment {
     protected void translation(String str1, String str2, String msg) {
         Language langFrom = LanguageUtils.getLangByName(str1);
         Language langTo = LanguageUtils.getLangByName(str2);
-
+        Log.e("homeTest", langFrom +"->" + langTo );
 
         TranslateParameters tps = new TranslateParameters.Builder()
                 .source("Android-Translation")
@@ -335,6 +356,7 @@ public class HomeFragment extends BaseFragment {
         });
     }
 
+
     @Override
     public void onPause() {
         super.onPause();
@@ -347,6 +369,20 @@ public class HomeFragment extends BaseFragment {
 
         saveStringToSp("spinner_1",spinner_1.getSelectedIndex()+"");
         saveStringToSp("spinner_2",spinner_2.getSelectedIndex()+"");
+    }
+    public String getClipboardContent () {
+        // 获取系统剪贴板
+        ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+        // 返回数据
+        ClipData clipData = clipboard.getPrimaryClip();
+        if(clipData == null || clipData.getItemCount() <= 0){
+            return "";
+        }
+        ClipData.Item item = clipData.getItemAt(0);
+        if(item == null || item.getText() == null ){
+            return "";
+        }
+        return item.getText().toString();
     }
 
 }
