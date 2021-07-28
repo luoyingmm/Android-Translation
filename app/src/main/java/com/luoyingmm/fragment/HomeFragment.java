@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -167,6 +168,11 @@ public class HomeFragment extends BaseFragment {
             }
         });
 
+        if (getStringFromSp("sw_quick").equals("true")){
+            System.out.println(getStringFromSp("sw_quick"));
+            et_enter.requestFocus();
+        }
+
         btn_collect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -190,8 +196,6 @@ public class HomeFragment extends BaseFragment {
                         }
                     }
 
-                    //去重，防止用户多次输入重复值
-                    Log.e("Home", CollectFragment.data.toString() );
                 }else {
                     Toast.makeText(getActivity(), R.string.toast_failed, Toast.LENGTH_SHORT).show();
                 }
@@ -291,7 +295,8 @@ public class HomeFragment extends BaseFragment {
                         if (translateErrorCode.getCode() == 1){
                             Toast.makeText(getActivity(), "网络连接失败", Toast.LENGTH_SHORT).show();
                         }else if (translateErrorCode.getCode() == 108){
-                            Toast.makeText(getActivity(), "注册时提供的应用ID无效，已经自动切换为默认ID，稍后可以在我的->设置界面更改", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(), "提供的应用ID无效，已经自动切换为默认ID，稍后可以在我的->设置界面更改", Toast.LENGTH_LONG).show();
+                            saveStringToSp("translationId","");
                             YouDaoApplication.mAppKey = StringUtils.ID;
                         }else {
                             Toast.makeText(getActivity(), "连接失败，错误代码: " + translateErrorCode.getCode(), Toast.LENGTH_SHORT).show();
@@ -337,4 +342,5 @@ public class HomeFragment extends BaseFragment {
             clipboardManager.setPrimaryClip(mClipData);
         }
     }
+
 }

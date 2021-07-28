@@ -39,25 +39,26 @@
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="200dp"
         android:background="@color/white"
         android:layout_marginLeft="@dimen/dp_15"
         android:orientation="vertical"
         android:layout_marginRight="@dimen/dp_15">
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginLeft="@dimen/dp_20"
-            android:gravity="center_vertical"
             android:orientation="horizontal">
             <TextView
+                android:id="@+id/tv_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/ID"
                 android:textSize="@dimen/sp_15"
                 android:fontFamily="@font/calibri"
                 android:textColor="@color/black"
+                android:layout_centerVertical="true"
                 />
 
             <EditText
@@ -66,11 +67,34 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_10"
                 android:background="@null"
+                android:imeOptions="actionSearch"
+                android:layout_toRightOf="@id/tv_id"
+                android:singleLine="true"
+                android:layout_centerVertical="true"
+                android:ems="10"
                 android:fontFamily="@font/calibri"
-                android:text="@string/test"
                 android:textColor="@color/black"
                 android:textSize="@dimen/sp_15" />
-        </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_save"
+                android:layout_width="@dimen/dp_70"
+                android:layout_height="@dimen/dp_30"
+                android:text="@string/save"
+                android:background="@drawable/button_round"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/white"
+                android:layout_marginRight="@dimen/dp_5"
+                android:layout_centerVertical="true"
+                android:visibility="invisible"
+                />
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="#EEEEEE" />
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -98,6 +122,47 @@
                 />
             <com.google.android.material.switchmaterial.SwitchMaterial
                 android:id="@+id/sw_copy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/dp_10"
+                />
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="#EEEEEE" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/dp_20"
+            >
+            <TextView
+                android:id="@+id/tv_quick"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/quick"
+                android:textSize="@dimen/sp_15"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/calibri"
+                android:textColor="@color/black"
+                />
+            <ImageView
+                android:id="@+id/iv_quick"
+                android:layout_width="@dimen/dp_20"
+                android:layout_height="@dimen/dp_20"
+                android:src="@mipmap/why"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/tv_quick"
+                android:layout_marginLeft="@dimen/sp_10"
+                />
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/sw_quick"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"

@@ -34,6 +34,8 @@
     <string name="used">常用</string>
     <string name="quick_copy">快捷复制</string>
     <string name="ID">应用ID:</string>
+    <string name="save">保存</string>
+    <string name="quick">一键输入</string>
 
 
 </resources>
