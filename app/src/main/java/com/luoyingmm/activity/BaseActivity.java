@@ -19,6 +19,7 @@ import com.luoyingmm.util.StringUtils;
 
 import java.util.List;
 
+//Activity的父类
 public abstract class BaseActivity extends AppCompatActivity {
     public Context context;
 
@@ -28,7 +29,9 @@ public abstract class BaseActivity extends AppCompatActivity {
         setContentView(initLayout());
         context = this;
 
+        //绑定控件
         initView();
+        //应用逻辑
         initData();
         StatusBarUtil.setStatusBarMode(this, true, R.color.white);
     }

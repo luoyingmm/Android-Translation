@@ -29,6 +29,7 @@ public class WelcomeActivity extends BaseActivity {
     protected void initData() {
         SharedPreferences loginFlag = getSharedPreferences("LoginFlag", MODE_PRIVATE);
         StringUtils.username = loginFlag.getString("loginKey","");
+        //判断是否登录，如果登录就跳过cover和login界面
         if (!StringUtils.username.equals("")){
             Log.e("logout", getStringFromSp("login_flag") );
             navigateTo(MainActivity.class);

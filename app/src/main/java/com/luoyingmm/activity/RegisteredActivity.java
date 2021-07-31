@@ -65,6 +65,7 @@ public class RegisteredActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+        //点击切换验证码
         iv_verification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,6 +74,7 @@ public class RegisteredActivity extends BaseActivity {
                 iv_verification.setImageBitmap(bitmap);
             }
         });
+        //返回按钮
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,6 +82,7 @@ public class RegisteredActivity extends BaseActivity {
             }
         });
 
+        //注册按钮
         btn_registered.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,6 +93,7 @@ public class RegisteredActivity extends BaseActivity {
             }
         });
 
+        //有道智云的输入
         et_translation_id.setFocusable(false);//让EditText失去焦点，然后获取点击事件
         et_translation_id.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -165,6 +169,7 @@ public class RegisteredActivity extends BaseActivity {
             return;
         }
 
+        //请求OkHttp
         HashMap<String, Object> params = new HashMap<>();
         params.put("mobile",account);
         params.put("password",password);

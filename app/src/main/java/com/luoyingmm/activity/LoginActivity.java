@@ -39,7 +39,6 @@ public class LoginActivity extends BaseActivity {
     private TextView tvNoRegistered;
     private Button btn_login;
     private Button btn_registered;
-    private ImageView iv_verification;
 
     @Override
     protected int initLayout() {
@@ -53,7 +52,6 @@ public class LoginActivity extends BaseActivity {
         tvNoRegistered = findViewById(R.id.tv_registered);
         btn_login = findViewById(R.id.btn_login);
         btn_registered = findViewById(R.id.btn_registered);
-        iv_verification = findViewById(R.id.iv_verification);
     }
 
     @Override
@@ -65,6 +63,7 @@ public class LoginActivity extends BaseActivity {
             }
         });
 
+        //点击暂不登录
         tvNoRegistered.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,15 +75,17 @@ public class LoginActivity extends BaseActivity {
                             }
                             @Override
                             public void clickNegative() {
+                                //设置登录标记并跳转
                                 saveSpFlag("temp");
                                 StringUtils.username = "temp";
                                 saveStringToSp("login_flag","right");
-                                navigateTo(MainActivity.class);
-                                finish();
+                                //清除栈
+                                navigateToWithFlag(MainActivity.class, Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                             }
                         });
             }
         });
+        //点击登录按钮
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -111,6 +112,7 @@ public class LoginActivity extends BaseActivity {
         HashMap<String, Object> params = new HashMap<>();
         params.put("mobile",account);
         params.put("password",password);
+        //根据OkHttp请求数据进行登录校验
         Api.config(ApiConfig.LOGIN,params).postRequest(new TtitCallback() {
             @Override
             public void onSuccess(String res) {

@@ -21,6 +21,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+//OkHttp解析数据
 public class Api {
     private static OkHttpClient client;
     private static String requestUrl;
@@ -44,15 +45,15 @@ public class Api {
         RequestBody requestBodyJson =
                 RequestBody.create(MediaType.parse("application/json;charset=utf-8")
                         , jsonStr);
-        //第三步创建Rquest
+
         Request request = new Request.Builder()
                 .url(requestUrl)
                 .addHeader("contentType", "application/json;charset=UTF-8")
                 .post(requestBodyJson)
                 .build();
-        //第四步创建call回调对象
+       //创建call回调对象
         final Call call = client.newCall(request);
-        //第五步发起请求
+        //发起请求
         call.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {

@@ -18,6 +18,7 @@ import com.luoyingmm.fragment.MyFragment;
 import java.util.ArrayList;
 
 public class MainActivity extends BaseActivity {
+    //下方的工具栏
     private String[] mTitles = {"首页", "收藏", "我的"};
     private int[] mIconUnselectIds = {
             R.mipmap.home_unselect, R.mipmap.collect_unselect,
@@ -25,6 +26,7 @@ public class MainActivity extends BaseActivity {
     private int[] mIconSelectIds = {
             R.mipmap.home_select, R.mipmap.collect_select,
             R.mipmap.own_select};
+
     private ArrayList<Fragment> mFragments = new ArrayList<>();
     public static ViewPager viewPager;
     private CommonTabLayout commonTabLayout;
@@ -43,6 +45,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+        //集合添加fragment
         mFragments.add(HomeFragment.newInstance());
         mFragments.add(CollectFragment.newInstance());
         mFragments.add(MyFragment.newInstance());
@@ -51,6 +54,7 @@ public class MainActivity extends BaseActivity {
             mTabEntities.add(new TabEntity(mTitles[i], mIconSelectIds[i], mIconUnselectIds[i]));
         }
 
+        //点击下方实现fragment界面切换
         commonTabLayout.setTabData(mTabEntities);
         commonTabLayout.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
@@ -64,6 +68,7 @@ public class MainActivity extends BaseActivity {
             }
         });
 
+        //滑动切换
         viewPager.setOffscreenPageLimit(mFragments.size());
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
