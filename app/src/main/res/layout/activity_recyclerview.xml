@@ -3,36 +3,42 @@
     android:gravity="center"
     android:layout_width="match_parent"
     android:layout_height="50dp">
-    <LinearLayout
-        android:id="@+id/ll_translation"
+    <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="130dp"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
+        android:layout_marginRight="120dp"
         android:layout_marginLeft="@dimen/sp_20"
+        android:scrollbars="none"
         >
-        <TextView
-            android:id="@+id/tv_1"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/ll_translation"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/sp_15"
-            android:textColor="@color/black"
-            android:ellipsize="end"
-            android:text="你好"
-            android:maxLines="1"
-            />
-        <TextView
-            android:id="@+id/tv_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hello"
-            android:layout_marginLeft="@dimen/sp_20"
-            android:textSize="@dimen/sp_13"
-            android:maxLines="1"
-            android:ellipsize="end"
-            />
-    </LinearLayout>
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            >
+            <TextView
+                android:id="@+id/tv_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp_15"
+                android:textColor="@color/black"
+                android:ellipsize="end"
+                android:text="你好"
+                android:maxLines="1"
+                />
+            <TextView
+                android:id="@+id/tv_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hello"
+                android:layout_marginLeft="@dimen/sp_20"
+                android:textSize="@dimen/sp_13"
+                android:maxLines="1"
+                />
+        </LinearLayout>
+    </HorizontalScrollView>
+
 
 
     <ImageView
