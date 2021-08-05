@@ -170,7 +170,6 @@ public class HomeFragment extends BaseFragment {
             public void afterTextChanged(Editable editable) {
                 if (!TextUtils.isEmpty(et_enter.getText().toString())) {
                     translation(sp_1, sp_2, et_enter.getText().toString());
-
                 }else {
                     et_content.setText("");
                 }
@@ -336,7 +335,16 @@ public class HomeFragment extends BaseFragment {
                     @Override
                     public void run() {
                         if (!TextUtils.isEmpty(et_enter.getText().toString())) {
-                            result = translate.getTranslations().toString();
+                            if (getStringFromSp("sw_details").equals("true")) {
+                                try {
+                                    result = translate.getExplains().toString();
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                    result = translate.getTranslations().toString();
+                                }
+                            }else {
+                                result = translate.getTranslations().toString();
+                            }
                             result = result.replace("[", "");
                             result = result.replace("]", "");
                             et_content.setText(result);

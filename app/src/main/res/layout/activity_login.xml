@@ -80,7 +80,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="@dimen/dp_5"
-                android:text="暂不注册"
+                android:text="@string/login_wait"
                 />
         </com.google.android.material.textfield.TextInputLayout>
 

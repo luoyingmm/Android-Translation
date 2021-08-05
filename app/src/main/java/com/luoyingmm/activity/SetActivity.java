@@ -31,6 +31,8 @@ public class SetActivity extends BaseActivity {
     private Button btn_save;
     private SwitchMaterial sw_quick;
     private SwitchMaterial sw_read;
+    private SwitchMaterial sw_details;
+
 
     @Override
     protected int initLayout() {
@@ -48,6 +50,7 @@ public class SetActivity extends BaseActivity {
         iv_quick = findViewById(R.id.iv_quick);
         iv_read = findViewById(R.id.iv_read);
         sw_read = findViewById(R.id.sw_read);
+        sw_details = findViewById(R.id.sw_details);
         setSupportActionBar(my_toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
@@ -64,6 +67,9 @@ public class SetActivity extends BaseActivity {
 
         if (getStringFromSp("sw_read").equals("true")){
             sw_read.setChecked(true);
+        }
+        if (getStringFromSp("sw_details").equals("true")){
+            sw_details.setChecked(true);
         }
         my_toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,6 +132,17 @@ public class SetActivity extends BaseActivity {
                     sw_quick.setChecked(true);
                 }else {
                     saveStringToSp("sw_read","false");
+                }
+            }
+        });
+
+        sw_details.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    saveStringToSp("sw_details","true");
+                }else {
+                    saveStringToSp("sw_details","false");
                 }
             }
         });

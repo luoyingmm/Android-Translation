@@ -119,15 +119,10 @@ public class RegisteredActivity extends BaseActivity {
                     et_translation_id.requestFocus();
                     et_translation_id.findFocus();
                 }
-
                 }
 
         });
-
-
-
     }
-
 
     private void register(String account, String password,String passwordRepeat) {
         if (StringUtils.isEmpty(account)){
