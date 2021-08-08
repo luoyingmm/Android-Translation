@@ -81,7 +81,6 @@ public class MyFragment extends BaseFragment {
         iv_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 DialogUtil.showAlertDialog(getActivity(), R.mipmap.jump, "更换头像", "请选择你的图片来源",
                         "相册", "相机", true, new DialogUtil.AlertDialogBtnClickListener() {
                             @Override

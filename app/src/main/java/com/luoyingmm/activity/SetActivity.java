@@ -147,8 +147,6 @@ public class SetActivity extends BaseActivity {
             }
         });
 
-
-
         if (getStringFromSp("translationId").equals("")){
             et_id.setHint("系统默认ID，请勿更改！");
             Log.e("transs", "1"+ getStringFromSp("translationId"));
@@ -172,7 +170,6 @@ public class SetActivity extends BaseActivity {
                 }
                 hintKbTwo();
                 et_id.clearFocus();
-
             }
         });
 
@@ -204,7 +201,6 @@ public class SetActivity extends BaseActivity {
 
     /**
      * 此方法只是关闭软键盘
-     *
      */
     private void hintKbTwo() {
         InputMethodManager imm = (InputMethodManager)SetActivity.this.getSystemService(Context.INPUT_METHOD_SERVICE);
