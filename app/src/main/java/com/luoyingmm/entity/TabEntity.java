@@ -2,6 +2,7 @@ package com.luoyingmm.entity;
 
 import com.flyco.tablayout.listener.CustomTabEntity;
 
+//下方导航栏的实体类
 public class TabEntity implements CustomTabEntity {
     public String title;
     public int selectedIcon;

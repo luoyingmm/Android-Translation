@@ -13,6 +13,7 @@ import com.jaredrummler.materialspinner.MaterialSpinner;
 import com.luoyingmm.R;
 import com.luoyingmm.util.StringUtils;
 
+//欢迎界面
 public class WelcomeActivity extends BaseActivity {
     TextView tvAuthor;
     @Override

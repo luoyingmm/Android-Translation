@@ -29,6 +29,7 @@ import com.luoyingmm.util.StringUtils;
 import java.util.BitSet;
 import java.util.HashMap;
 
+//注册界面
 public class RegisteredActivity extends BaseActivity {
     private EditText et_username;
     private EditText et_password;

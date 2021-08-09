@@ -54,6 +54,7 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        //判断用户是否填写过应用ID
         if (!getStringFromSp("translationId").equals("")){
             YouDaoApplication.init(mRootView.getContext(), getStringFromSp("translationId"));
             Log.e("transs", "1"+ getStringFromSp("translationId"));
@@ -62,15 +63,17 @@ public abstract class BaseFragment extends Fragment {
             Log.e("transs", "2"+ getStringFromSp("translationId"));
         }
 
+        //设置上方通知栏的颜色为白色
         StatusBarUtil.setStatusBarMode(getActivity(), true, R.color.white);
+        //初始化存放翻译内容的数据库
          databaseHelper = new DatabaseHelper(getActivity(), "TranslationData.db", null, 1);
          db = databaseHelper.getWritableDatabase();
         initData();
     }
 
+    //静止纯文本换行
     protected void banEditTextOnlyLine(EditText editText){
         editText.addTextChangedListener(new TextWatcher() {
-
             public void onTextChanged(CharSequence s, int start, int before, int count) {
             }
             public void beforeTextChanged(CharSequence s, int start, int count,
@@ -86,17 +89,21 @@ public abstract class BaseFragment extends Fragment {
         });
     }
 
+    //存储sp
     protected void saveStringToSp(String key,String val){
         SharedPreferences sp = getActivity().getSharedPreferences(StringUtils.username, MODE_PRIVATE);
         SharedPreferences.Editor edit = sp.edit();
         edit.putString(key,val);
         edit.apply();
     }
+
+    //获取Sp
     protected String getStringFromSp(String key){
         SharedPreferences sp = getActivity().getSharedPreferences(StringUtils.username, MODE_PRIVATE);
         return sp.getString(key,"");
     }
 
+    //往数据库插入数据
     protected void insertDataBase(String translation,String result){
         values = new ContentValues();
         values.put("translation",translation);

@@ -17,6 +17,7 @@ import com.luoyingmm.fragment.MyFragment;
 
 import java.util.ArrayList;
 
+//主界面的ViewPager
 public class MainActivity extends BaseActivity {
     //下方的工具栏
     private String[] mTitles = {"首页", "收藏", "我的"};

@@ -1,5 +1,5 @@
 package com.luoyingmm.jsbridge;
-
+//webView实现
 public class DefaultHandler implements BridgeHandler{
 
 	String TAG = "DefaultHandler";

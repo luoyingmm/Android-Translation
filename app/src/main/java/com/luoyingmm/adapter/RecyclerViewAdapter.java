@@ -38,6 +38,8 @@ import java.util.List;
 
 import static android.content.Context.MODE_PRIVATE;
 
+
+//收藏界面的RecyclerViewAdapter
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
     public static List<TranslationData> data;
     private OnItemClickListener onItemClickListener;
@@ -79,6 +81,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.tv_1.setText(data.get(position).getTranslation());
         holder.tv_2.setText(data.get(position).getResult());
 
+        //每行的复制按钮
         holder.iv_copy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,10 +92,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 Toast.makeText(mContext, "复制成功", Toast.LENGTH_SHORT).show();
             }
         });
+        //每行的删除按钮
         holder.iv_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!(data.size() == 0 )){
+                    //自定义的提示框
                     DialogUtil.showAlertDialog((Activity) mContext, R.mipmap.delete_unselect, "删除提示", "你确定要删除吗？",
                             "确定", "取消", true, new DialogUtil.AlertDialogBtnClickListener() {
                         @Override
@@ -110,7 +115,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                         }
                         @Override
                         public void clickNegative() {
-                            //negative
+
                         }
                     });
 
@@ -118,6 +123,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             }
 
         });
+
+        //监听每行
         holder.ll_translation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -127,6 +134,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             }
         });
 
+        //详情图标点击跳转谷歌翻译
         holder.iv_details.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

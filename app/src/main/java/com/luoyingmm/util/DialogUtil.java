@@ -11,7 +11,7 @@ import androidx.appcompat.app.AlertDialog;
 
 import com.luoyingmm.R;
 
-
+//自定义的提示框
 public class DialogUtil {
     private static AlertDialog dialog;
 

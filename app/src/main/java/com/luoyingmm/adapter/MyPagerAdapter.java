@@ -9,6 +9,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
+//自定义PagerAdapter，去除点击下方导航栏会有滑动效果
 public class MyPagerAdapter extends FragmentPagerAdapter {
     private String[] mTitles;
     private ArrayList<Fragment> mFragments;

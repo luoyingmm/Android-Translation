@@ -12,6 +12,7 @@ import java.util.List;
  * @author haoqing
  *
  */
+//webView实现
 public class Message {
 
 	private String callbackId; //callbackId

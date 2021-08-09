@@ -31,12 +31,12 @@ import static android.content.Context.MODE_PRIVATE;
 public class MyFragment extends BaseFragment {
     private TextView tv_title;
     private ImageView iv_img;
-    private  RelativeLayout rl_collect;
+    private RelativeLayout rl_collect;
     private RelativeLayout rl_set;
     private RelativeLayout rl_logout;
 
     public MyFragment() {
-        // Required empty public constructor
+
     }
 
 
@@ -59,25 +59,25 @@ public class MyFragment extends BaseFragment {
         rl_collect = mRootView.findViewById(R.id.rl_collect);
         rl_set = mRootView.findViewById(R.id.rl_set);
         rl_logout = mRootView.findViewById(R.id.rl_logout);
+        //读取头像
         Bitmap bitmap = SPUtils.getBitmapFromSharedPreferences(getActivity(), StringUtils.username, "photo", "");
         if (!StringUtils.isEmpty(getStringFromSp("photoFlag"))){
             iv_img.setImageBitmap(bitmap);
-            Log.e("mytest", StringUtils.username);
-            System.out.println(StringUtils.username);
         }else {
             iv_img.setImageResource(R.mipmap.change_head);
-            System.out.println(StringUtils.username);
         }
     }
 
     @Override
     protected void initData() {
+        //如果之前选择"暂不登录"名字就叫做“游客”，否则显示自定义的名字
         if (StringUtils.isEmpty(getStringFromSp("username"))) {
             tv_title.setText("游客");
         } else {
             tv_title.setText(getStringFromSp("username"));
         }
 
+        //更换头像
         iv_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,6 +112,8 @@ public class MyFragment extends BaseFragment {
 
             }
         });
+
+        //收藏界面跳转
         rl_collect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -119,6 +121,7 @@ public class MyFragment extends BaseFragment {
             }
         });
 
+        //设置界面跳转
         rl_set.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -126,6 +129,7 @@ public class MyFragment extends BaseFragment {
             }
         });
 
+        //退出登录
         rl_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -148,6 +152,7 @@ public class MyFragment extends BaseFragment {
         });
     }
 
+    //关闭app保存头像
     @Override
     public void onPause() {
         super.onPause();

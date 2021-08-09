@@ -2,6 +2,7 @@ package com.luoyingmm.entity;
 
 import java.io.Serializable;
 
+//翻译内容的实体类
 public class TranslationData implements Serializable{
     private String translation;
     private String result;

@@ -7,7 +7,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-
+//webView实现
 public class BridgeUtil {
 	final static String YY_OVERRIDE_SCHEMA = "vpclub://";
 	final static String YY_RETURN_DATA     = YY_OVERRIDE_SCHEMA + "return/";//格式为   loveu://return/{function}/returncontent

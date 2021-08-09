@@ -10,7 +10,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 
 /**
- * SharedPreferences 工具类
+ * SharedPreferences 图片工具类
  *
  */
 public class SPUtils {

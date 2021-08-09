@@ -1,6 +1,6 @@
 package com.luoyingmm.jsbridge;
 
-
+//webView实现
 public interface LvUJsBridge {
 	
 	public void send(String data);

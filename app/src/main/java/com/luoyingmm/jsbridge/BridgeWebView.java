@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+//webView实现
 @SuppressLint("SetJavaScriptEnabled")
 public class BridgeWebView extends WebView
         implements LvUJsBridge {

@@ -1,6 +1,6 @@
 package com.luoyingmm.entity;
 
-
+//用于登录映射的实体类
 public class LoginResponse {
 
 

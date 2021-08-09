@@ -67,20 +67,23 @@ import java.util.List;
 import java.util.PropertyResourceBundle;
 import java.util.stream.Collectors;
 
+//首页
 public class HomeFragment extends BaseFragment {
+    //左侧下拉栏
     private MaterialSpinner spinner_1;
+    //右侧下拉栏
     private MaterialSpinner spinner_2;
     private EditText et_enter;
     private EditText et_content;
+    //存储左右侧下拉栏数据
     private String sp_1,sp_2;
     private Button btn_collect;
     private FrameLayout frameLayout;
     private FrameLayout fragment_result;
     private ImageView iv_copy;
 
-    Handler handler;
     public HomeFragment() {
-        // Required empty public constructor
+
     }
 
 
@@ -116,7 +119,7 @@ public class HomeFragment extends BaseFragment {
         sp_1 = "自动";
         sp_2 = "中文";
 
-
+        //首页左侧的下拉框
         spinner_1.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener() {
             @Override
             public void onItemSelected(MaterialSpinner view, int position, long id, Object item) {
@@ -126,6 +129,7 @@ public class HomeFragment extends BaseFragment {
                 }
             }
         });
+        //首页右侧侧的下拉框
         spinner_2.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener() {
             @Override
             public void onItemSelected(MaterialSpinner view, int position, long id, Object item) {
@@ -136,14 +140,15 @@ public class HomeFragment extends BaseFragment {
             }
         });
 
+        //读取的上次关闭的下拉框选项
         if (!StringUtils.isEmpty(getStringFromSp("spinner_1")) && !StringUtils.isEmpty(getStringFromSp("spinner_1"))) {
             spinner_1.setSelectedIndex(Integer.parseInt(getStringFromSp("spinner_1")));
             sp_1 = (String) spinner_1.getItems().get(Integer.parseInt(getStringFromSp("spinner_1")));
             spinner_2.setSelectedIndex(Integer.parseInt(getStringFromSp("spinner_2")));
             sp_2 = (String) spinner_2.getItems().get(Integer.parseInt(getStringFromSp("spinner_2")));
-
         }
 
+        //点击输入区域让输入框获取焦点
         frameLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -155,6 +160,7 @@ public class HomeFragment extends BaseFragment {
             }
         });
 
+        //监听输入框
         et_enter.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -176,11 +182,12 @@ public class HomeFragment extends BaseFragment {
             }
         });
 
+        //判断是否打开设置“打开程序自动弹出输入法”
         if (getStringFromSp("sw_quick").equals("true")){
-            System.out.println(getStringFromSp("sw_quick"));
             et_enter.requestFocus();
         }
 
+        //判断设置是否打开“自动读取剪贴板”
         if (getStringFromSp("sw_read").equals("true")){
             spinner_1.setSelectedIndex(0);
             sp_1 = "自动";
@@ -193,26 +200,27 @@ public class HomeFragment extends BaseFragment {
             },100);
         }
 
-
-
-
+        //收藏翻译内容，并插入数据库，用在收藏界面展示
         btn_collect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //非空就插入
                 if (!TextUtils.isEmpty(et_content.getText().toString()) || !TextUtils.isEmpty(et_enter.getText().toString()) ) {
                     insertDataBase(et_enter.getText().toString(),et_content.getText().toString());
                     CollectFragment.data.add(new TranslationData(et_enter.getText().toString(),et_content.getText().toString()));
+                    //前两次收藏显示“收藏成功，可前往下方收藏界面查看~”，之后显示"收藏成功".同时显示时间前者更长
                     if (!getStringFromSp("total").equals("11")) {
+                        //去重，防止用户多次输入重复值
                         if (duplicateRemoval()) {
-                            Toast.makeText(getActivity(), R.string.toast_first_successful, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), R.string.toast_first_successful, Toast.LENGTH_LONG).show();
                             CollectFragment.mAdapter.notifyItemChanged(CollectFragment.data.size());
                             saveStringToSp("total", getStringFromSp("total") + "1");
                         }else {
-                            Toast.makeText(getActivity(), R.string.toast_failed_2, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), R.string.toast_failed_2, Toast.LENGTH_LONG).show();
                         }
                     } else {
                         if ( duplicateRemoval()) {
-                            Toast.makeText(getActivity(), R.string.toast_first_successful, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), R.string.toast_successful, Toast.LENGTH_SHORT).show();
                             CollectFragment.mAdapter.notifyItemChanged(CollectFragment.data.size());
                         }else {
                             Toast.makeText(getActivity(), R.string.toast_failed_2, Toast.LENGTH_SHORT).show();
@@ -222,6 +230,7 @@ public class HomeFragment extends BaseFragment {
                 }else {
                     Toast.makeText(getActivity(), R.string.toast_failed, Toast.LENGTH_SHORT).show();
                 }
+                //如果有数据就"去除收藏界面没有收藏单词的提示"，反之就显示
                 if (CollectFragment.data.size() > 0){
                     CollectFragment.tv_collect.setVisibility(View.GONE);
                 }else {
@@ -230,6 +239,7 @@ public class HomeFragment extends BaseFragment {
             }
         });
 
+        //结果区域的复制按钮
         iv_copy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -245,6 +255,7 @@ public class HomeFragment extends BaseFragment {
             }
         });
 
+        //长按结果区域跳转
         fragment_result.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
@@ -269,6 +280,7 @@ public class HomeFragment extends BaseFragment {
             }
         });
 
+        //如果用户点按了结果区，提示用户长按会跳转，只有初次有效
         fragment_result.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -297,6 +309,7 @@ public class HomeFragment extends BaseFragment {
     }
 
 
+    //根据用户输入的内容发起okhttp请求，获取翻译结果，在结果区内显示
     protected void translation(String str1, String str2, String msg) {
         Language langFrom = LanguageUtils.getLangByName(str1);
         Language langTo = LanguageUtils.getLangByName(str2);
@@ -368,6 +381,7 @@ public class HomeFragment extends BaseFragment {
     @Override
     public void onPause() {
         super.onPause();
+        //如果设置打开“快捷复制”，会在程序退出后，自动复制结果区的内容
         if (getStringFromSp("sw_copy").equals("true")) {
             ClipboardManager clipboardManager = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
             String ocrText = et_content.getText().toString();
@@ -375,9 +389,12 @@ public class HomeFragment extends BaseFragment {
             clipboardManager.setPrimaryClip(mClipData);
         }
 
+        //存储两个下拉框的内容
         saveStringToSp("spinner_1",spinner_1.getSelectedIndex()+"");
         saveStringToSp("spinner_2",spinner_2.getSelectedIndex()+"");
     }
+
+    //读取剪贴板
     public String getClipboardContent () {
         // 获取系统剪贴板
         ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);

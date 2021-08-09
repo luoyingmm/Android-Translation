@@ -9,9 +9,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.luoyingmm.R;
 import com.luoyingmm.jsbridge.BridgeWebView;
-
-
-
+//WebView呈现
 public class WebActivity extends BaseActivity{
     private BridgeWebView bridgeWebView;
     private String url;

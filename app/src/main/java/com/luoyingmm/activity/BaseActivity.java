@@ -33,6 +33,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         initView();
         //应用逻辑
         initData();
+        //设置上方通知栏的颜色为白色
         StatusBarUtil.setStatusBarMode(this, true, R.color.white);
     }
 

@@ -9,6 +9,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import org.jetbrains.annotations.NotNull;
 
+//取消点击跳转动画的ViewPager
 public class FixedViewPager extends ViewPager {
     public FixedViewPager(@NonNull @NotNull Context context) {
         super(context);

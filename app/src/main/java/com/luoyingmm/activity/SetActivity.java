@@ -21,16 +21,24 @@ import com.luoyingmm.R;
 import com.luoyingmm.util.StringUtils;
 import com.youdao.sdk.app.YouDaoApplication;
 
+//设置界面
 public class SetActivity extends BaseActivity {
     private Toolbar my_toolbar;
+    //快捷复制的详情
     private ImageView iv_why;
+    //打开程序自动弹出输入法的详情
     private ImageView iv_quick;
+    //自动读取剪贴板的详情
     private ImageView iv_read;
+    //快捷复制Switch
     private SwitchMaterial sw_copy;
     private EditText et_id;
     private Button btn_save;
+    //打开程序自动弹出输入法的Switch
     private SwitchMaterial sw_quick;
+    //自动读取剪贴板的Switch
     private SwitchMaterial sw_read;
+    //详情翻译的Switch
     private SwitchMaterial sw_details;
 
 
@@ -57,26 +65,34 @@ public class SetActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+        //判断快捷复制的开关
         if (getStringFromSp("sw_copy").equals("true")){
             sw_copy.setChecked(true);
         }
 
+        //打开程序自动弹出输入法的开关
         if (getStringFromSp("sw_quick").equals("true")){
             sw_quick.setChecked(true);
         }
 
+        //自动读取剪贴板的开关
         if (getStringFromSp("sw_read").equals("true")){
             sw_read.setChecked(true);
         }
+
+        //详细翻译的开关
         if (getStringFromSp("sw_details").equals("true")){
             sw_details.setChecked(true);
         }
+        //toolbar的左上角的返回
         my_toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
+
+        //快捷复制的提示
         iv_why.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,6 +100,7 @@ public class SetActivity extends BaseActivity {
             }
         });
 
+        //打开程序自动弹出输入法的提示
         iv_quick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,6 +108,7 @@ public class SetActivity extends BaseActivity {
             }
         });
 
+        //自动读取剪贴板的提示
         iv_read.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,8 +116,7 @@ public class SetActivity extends BaseActivity {
             }
         });
 
-
-
+        //存储快捷复制状况
         sw_copy.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -112,6 +129,7 @@ public class SetActivity extends BaseActivity {
             }
         });
 
+        //存储程序自动弹出输入法状况
         sw_quick.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -124,6 +142,7 @@ public class SetActivity extends BaseActivity {
             }
         });
 
+        //存储自动读取剪贴板状况
         sw_read.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -136,6 +155,7 @@ public class SetActivity extends BaseActivity {
             }
         });
 
+        //存储详细翻译状况
         sw_details.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -147,13 +167,14 @@ public class SetActivity extends BaseActivity {
             }
         });
 
+        //更改应用ID
         if (getStringFromSp("translationId").equals("")){
             et_id.setHint("系统默认ID，请勿更改！");
-            Log.e("transs", "1"+ getStringFromSp("translationId"));
         }else {
            et_id.setText(getStringFromSp("translationId"));
         }
 
+        //存储ID更改
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -173,13 +194,7 @@ public class SetActivity extends BaseActivity {
             }
         });
 
-        et_id.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
+        //应用ID输入框
         et_id.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

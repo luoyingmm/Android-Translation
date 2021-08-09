@@ -16,6 +16,7 @@ import androidx.appcompat.widget.AppCompatImageView;
  * Created by yds
  * on 2020/3/10.
  */
+//圆形头像
 public class CircleImageView extends AppCompatImageView {
 
     private int mSize;

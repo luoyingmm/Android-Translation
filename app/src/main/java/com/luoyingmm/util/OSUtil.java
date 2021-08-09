@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
-
+//上方通知栏白色效果
 public class OSUtil {
 
     //MIUI标识

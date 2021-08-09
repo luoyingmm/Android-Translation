@@ -33,6 +33,7 @@ import com.luoyingmm.util.StringUtils;
 
 import java.util.HashMap;
 
+//登录界面
 public class LoginActivity extends BaseActivity {
     private EditText etUsername;
     private EditText etPassword;
