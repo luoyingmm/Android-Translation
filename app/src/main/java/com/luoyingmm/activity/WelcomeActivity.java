@@ -44,4 +44,10 @@ public class WelcomeActivity extends BaseActivity {
             },1000);
         }
     }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(0,0);
+    }
 }
