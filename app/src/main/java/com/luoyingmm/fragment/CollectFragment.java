@@ -45,7 +45,7 @@ public class CollectFragment extends BaseFragment {
     private LinearLayoutManager mLinearLayoutManager;//布局管理器
     public static List<TranslationData> data;
     public static TextView tv_collect;
-    private ImageView iv_deleteAll;
+    public static ImageView iv_deleteAll;
     public CollectFragment() {
 
     }
@@ -108,8 +108,10 @@ public class CollectFragment extends BaseFragment {
         //如果有数据就"去除收藏界面没有收藏单词的提示"，反之就显示
         if (data.size() > 0){
             tv_collect.setVisibility(View.GONE);
+            iv_deleteAll.setVisibility(View.VISIBLE);
         }else {
             tv_collect.setVisibility(View.VISIBLE);
+            iv_deleteAll.setVisibility(View.GONE);
         }
 
         //右上角一键删除
@@ -122,6 +124,7 @@ public class CollectFragment extends BaseFragment {
                         data.clear();
                         mAdapter.notifyDataSetChanged();
                         CollectFragment.tv_collect.setVisibility(View.VISIBLE);
+                        CollectFragment.iv_deleteAll.setVisibility(View.GONE);
                         db.execSQL("delete from translationData");
                     }
                 }).setNegativeButton("取消", null).show();

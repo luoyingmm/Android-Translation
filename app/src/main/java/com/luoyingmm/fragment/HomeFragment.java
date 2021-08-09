@@ -233,8 +233,10 @@ public class HomeFragment extends BaseFragment {
                 //如果有数据就"去除收藏界面没有收藏单词的提示"，反之就显示
                 if (CollectFragment.data.size() > 0){
                     CollectFragment.tv_collect.setVisibility(View.GONE);
+                    CollectFragment.iv_deleteAll.setVisibility(View.VISIBLE);
                 }else {
                     CollectFragment.tv_collect.setVisibility(View.VISIBLE);
+                    CollectFragment.iv_deleteAll.setVisibility(View.GONE);
                 }
             }
         });

@@ -109,8 +109,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                             notifyItemRangeChanged(position, getItemCount() - position);
                             if (data.size() > 0){
                                 CollectFragment.tv_collect.setVisibility(View.GONE);
+                                CollectFragment.iv_deleteAll.setVisibility(View.VISIBLE);
                             }else {
                                 CollectFragment.tv_collect.setVisibility(View.VISIBLE);
+                                CollectFragment.iv_deleteAll.setVisibility(View.GONE);
                             }
                         }
                         @Override
