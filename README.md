@@ -6,7 +6,7 @@
 * 用户无需点击翻译按钮，可以做到输入即翻译。
 
 <p align="middle">
-<img src="https://luoyingmm.oss-cn-shanghai.aliyuncs.com/img/cover.jpg" alt="封面" width="250"/><img src="https://luoyingmm.oss-cn-shanghai.aliyuncs.com/img/Screenshot_20210726_235253.jpg" alt="注册" width="250"/><img src="https://luoyingmm.oss-cn-shanghai.aliyuncs.com/img/Screenshot_20210724_001329.jpg" alt="主页" width="250"/>
+<img src="https://github.com/luoyingmm/Android-Translation/blob/main/image/cover.jpg" alt="封面" width="250"/><img src="https://github.com/luoyingmm/Android-Translation/blob/main/image/Screenshot_20210726_235253.jpg" alt="注册" width="250"/><img src="https://github.com/luoyingmm/Android-Translation/blob/main/image/Screenshot_20210724_001329.jpg" alt="主页" width="250"/>
 </p>
 
 
